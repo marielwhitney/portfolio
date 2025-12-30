@@ -680,13 +680,26 @@
       }
 
       function setBackground(url) {
-        if (!url) return;
-        if (isVideoUrl(url) && bgVideo) {
-          bgVideo.src = url;
-          bgVideo.classList.add("is-visible");
+         if (isVideoUrl(url) && bgVideo) {
+          // hide image layers
           bgA.classList.remove("is-visible");
           bgB.classList.remove("is-visible");
-          bgVideo.play().catch(() => {});
+
+          // reset + set new video
+          bgVideo.pause();
+          bgVideo.removeAttribute("src");
+          bgVideo.load();
+
+          bgVideo.src = url;
+          bgVideo.load();
+          bgVideo.currentTime = 0;
+
+          bgVideo.classList.add("is-visible");
+
+          const tryPlay = () => bgVideo.play().catch(() => {});
+          if (bgVideo.readyState >= 2) tryPlay();
+          else bgVideo.addEventListener("canplay", tryPlay, { once: true });
+
           return;
         }
 
