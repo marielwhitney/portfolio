@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>whitMey — Portfolio</title>
+    <style>
+      :root {
+        --bg: #fff;
+        --fg: #111111;
+        --muted: rgba(17, 17, 17, 0.6);
+        --line: rgba(17, 17, 17, 0.2);
+        --accent: #dfdfdf;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Cormorant Garamond", serif;
+        overflow-x: hidden;
+        overflow-y: auto; /* IMPORTANT: we need scroll */
+      }
+
+      /* --- BACKGROUND --- */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .bg-layer {
+        position: absolute;
+        inset: 0;
+        background: var(--bg);
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 300ms ease;
+        will-change: opacity, transform;
+        transform: scale(1.06);
+        filter: grayscale(1) contrast(0.95) brightness(0.95);
+      }
+
+      .bg-layer.is-visible {
+        opacity: 1;
+      }
+
+      /* optional: faint wash so text stays readable */
+      .bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          70% 70% at 50% 45%,
+          rgba(255, 255, 255, 0.78),
+          rgba(255, 255, 255, 0.92)
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .noise {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        opacity: 0.06;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      }
+
+      .border-frame {
+        pointer-events: none;
+        position: fixed;
+        inset: 18px;
+        z-index: 5;
+      }
+
+      /* --- LAYOUT --- */
+      .wrap {
+        position: relative;
+        z-index: 6;
+        min-height: 100%;
+      }
+
+      header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding: 26px 28px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 7;
+        pointer-events: none;
+      }
+      header a {
+        pointer-events: auto;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin: 1rem;
+      }
+      header a:hover {
+        color: var(--accent);
+      }
+
+      /* --- SCROLL ZOOM SCENE --- */
+      .scene {
+        /* gives us scroll distance */
+        height: 220vh;
+        display: block;
+      }
+
+      .scene__sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 120px 24px 120px; /* room for header + brand etc. */
+      }
+
+      .scene__content {
+        text-align: center;
+        transform: scale(var(--scale, 1));
+        opacity: var(--alpha, 1);
+        will-change: transform, opacity;
+      }
+
+      .scene__title {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        line-height: 0.95;
+        font-size: clamp(56px, 9vw, 140px); /* BIG like “Think BIG” */
+      }
+
+      .scene__subtitle {
+        margin: 14px 0 0;
+        color: rgba(17, 17, 17, 0.62);
+        font-size: 14px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      /* Scroll-zoom section */
+      .zoom-section {
+        position: relative;
+        height: 200vh;
+        background: transparent; /* was #fff */
+      }
+
+      .zoom-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: transparent; /* was #fff */
+      }
+      .zoom-title {
+        -webkit-text-stroke: 0.01px transparent;
+      }
+
+      .zoom-bg {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=2532&auto=format&fit=crop")
+          center/cover no-repeat;
+        opacity: var(--bgAlpha, 0);
+        transform: scale(var(--bgScale, 1.05));
+        will-change: opacity, transform;
+        z-index: 0;
+      }
+
+      .zoom-word {
+        position: relative;
+        z-index: 2;
+        transform: scale(var(--wordScale, 1));
+        opacity: var(--wordAlpha, 1);
+        will-change: transform, opacity;
+      }
+
+      .zoom-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      /* Shared “image in text” style */
+      .zoom-word {
+        color: transparent;
+        background-image: url("https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=2532&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      /* Stage A: word zoom */
+      .zoom-word {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        line-height: 0.9;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: clamp(56px, 14vw, 220px);
+        transform: scale(var(--wordScale, 1));
+        opacity: var(--wordAlpha, 1);
+        will-change: transform, opacity;
+      }
+
+      /* Optional: keep edges crisp */
+      .zoom-word {
+        -webkit-text-stroke: 0.01px transparent;
+      }
+
+      /* Next section */
+      .info-section {
+        min-height: auto;
+        padding: 120px 28px 60px;
+      }
+
+      .info-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        /* display: grid;
+        grid-template-columns: minmax(200px, 260px) 1fr;
+        gap: 40px; */
+        align-items: start;
+      }
+
+      .info-heading {
+        margin: 0;
+        font-size: clamp(36px, 5vw, 56px);
+        font-weight: 600;
+        text-align: left;
+        font-family: "Cormorant Garamond", serif;
+        grid-column: 2;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      a:hover {
+        color: var(--accent);
+      }
+
+      .info-rule {
+        margin: 24px 0 32px;
+        border: 0;
+        border-top: 1px solid rgba(17, 17, 17, 0.2);
+        grid-column: 2;
+      }
+
+      .info-grid {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(200px, 260px) 1fr;
+        gap: 40px;
+        align-items: start;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .info-lede {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(17, 17, 17, 0.7);
+      }
+
+      .info-copy {
+        display: grid;
+        gap: 18px;
+      }
+
+      .info-copy p {
+        margin: 0;
+        color: rgba(17, 17, 17, 0.8);
+        line-height: 1.8;
+      }
+      /* If you want the image to “take over” as you zoom in, we fade the wash */
+      .bg-wash-off .bg::after {
+        background: transparent;
+      }
+
+      .ticker {
+        position: relative;
+        height: 92px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .ticker::before,
+      .ticker::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 90px;
+        pointer-events: none;
+        z-index: 2;
+      }
+      .ticker::before {
+        left: 0;
+        background: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+      }
+      .ticker::after {
+        right: 0;
+        background: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+      }
+
+      .ticker__track {
+        display: flex;
+        gap: 18px;
+        width: max-content;
+        padding: 0 18px;
+        animation: tickerMove 26s linear infinite; /* speed */
+        will-change: transform;
+      }
+
+      .ticker__item {
+        display: grid;
+        place-items: center;
+        min-width: 220px;
+        height: 64px;
+        padding: 0 22px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 160ms ease, background 160ms ease;
+      }
+
+      .ticker__item:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* Seamless: move by half the track (because we duplicated items) */
+      @keyframes tickerMove {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .project-carousel {
+        padding: 48px 0;
+        overflow: hidden;
+      }
+
+      .carousel-track {
+        display: flex;
+        gap: 32px;
+        width: max-content;
+        animation: scrollProjects 60s linear infinite;
+      }
+
+      .project-carousel .project {
+        position: relative;
+        display: block;
+
+        width: 320px;
+        height: 200px;
+        overflow: hidden;
+
+        text-decoration: none;
+        color: #fff;
+
+        background-size: cover;
+        background-position: center;
+        filter: grayscale(1) contrast(1.05);
+        transition: filter 300ms ease, transform 300ms ease;
+      }
+
+      .project-carousel .project:hover {
+        filter: grayscale(0);
+        transform: translateY(-4px);
+      }
+
+      .project-carousel .project::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.65),
+          rgba(0, 0, 0, 0.15)
+        );
+      }
+
+      .project-carousel .project-title {
+        position: absolute;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #fff;
+      }
+
+      .project-carousel .project-meta {
+        display: none;
+      }
+
+      @keyframes scrollProjects {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      /* Respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .ticker__track {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        header {
+          padding: 18px 16px;
+        }
+        .scene {
+          height: 200vh;
+        }
+        .scene__sticky {
+          padding: 92px 18px 92px;
+        }
+        .scene__subtitle {
+          font-size: 12px;
+        }
+        .border-frame {
+          inset: 14px;
+          border-radius: 18px;
+        }
+        .info-grid {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        .info-inner {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        .info-heading,
+        .info-rule {
+          grid-column: 1;
+        }
+
+         .zoom-word{
+          font-size: clamp(65px, 15vw, 250px);
+         
+        }
+
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Background layers -->
+    <div class="bg" aria-hidden="true">
+      <div class="bg-layer is-visible" id="bgA"></div>
+      <div class="bg-layer" id="bgB"></div>
+    </div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="border-frame" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <header>
+        <a href="index.html">Mariel Whitney Portfolio</a>
+        <a href="about.html">About</a>
+      </header>
+      <section class="zoom-section" id="zoom">
+        <div class="zoom-sticky">
+          <!-- full image reveal layer (behind the text) -->
+          <div class="zoom-bg" aria-hidden="true"></div>
+
+          <!-- Stage A: whole word -->
+          <h2 class="zoom-title zoom-word" id="zoomWord">Statistics</h2>
+        </div>
+      </section>
+
+      <section class="info-section" id="information">
+        <div class="info-inner">
+          <a href="https://athletics.hope.edu/sports/football/stats">
+            <h3 class="info-heading">Statistics</h3></a
+          >
+          <hr class="info-rule" />
+          <div class="info-grid">
+            <p class="info-lede">Web Assistant</p>
+            <div class="info-copy">
+              <p>
+                This project involved developing interactive cumulative
+                statistics tables for Hope College Athletics page, organizing large
+                sets of historical team and player data into a clear, usable
+                interface.
+              </p>
+              <p>
+                I built dynamic, searchable, and filterable tables using HTML,
+                CSS, and JavaScript, focusing on making complex sports data easy
+                to explore without overwhelming the user. This pushed me to
+                think carefully about data structure, hierarchy, and
+                performance.
+              </p>
+              <p>
+                A major emphasis of this project was usability and
+                accessibility. I learned how small decisions—such as table
+                labeling, contrast, spacing, and keyboard navigation—can
+                dramatically improve how users interact with dense information.
+              </p>
+              <p>
+                The final result enhances how fans, coaches, and players engage
+                with past performance data, while reinforcing my skills in
+                front-end development, accessibility-conscious design, and
+                building interfaces that scale across multiple sports pages.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="project-carousel">
+        <div class="carousel-track project-list">
+          <a class="project" href="magazine.html" data-bg="magazine.png">
+            <p class="project-title">Magazine</p>
+          </a>
+
+          <a class="project" href="object.html" data-bg="boatproject.png">
+            <p class="project-title">Object Customizer</p>
+          </a>
+
+          <a class="project" href="paint.html" data-bg="splat.png">
+            <p class="project-title">Paint Splat</p>
+          </a>
+
+          <a class="project" href="hope.html" data-bg="hope.jpg">
+            <p class="project-title">Hope.edu</p>
+          </a>
+
+          <a class="project" href="ticket.html" data-bg="ticket.jpg">
+            <p class="project-title">Tickets</p>
+          </a>
+
+          <a class="project" href="sr.html" data-bg="sr.png">
+            <p class="project-title">Study Room</p>
+          </a>
+
+          <a
+            class="project"
+            href="stats.html"
+            data-bg="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=2532&auto=format&fit=crop"
+          >
+            <p class="project-title">Statistics</p>
+          </a>
+
+          <!-- DUPLICATE FOR SEAMLESS LOOP -->
+          <a class="project" href="magazine.html" data-bg="magazine.png">
+            <p class="project-title">Magazine</p>
+          </a>
+
+          <a class="project" href="object.html" data-bg="boatproject.png">
+            <p class="project-title">Object Customizer</p>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const section = document.getElementById("zoom");
+      const root = document.documentElement;
+
+      const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+      const lerp = (a, b, t) => a + (b - a) * t;
+
+      function onScroll() {
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight;
+
+        // progress 0 → 1 through the zoom section
+        const total = section.offsetHeight - vh;
+        const scrolled = clamp(-rect.top, 0, total);
+        const t = total > 0 ? scrolled / total : 0;
+
+        // WORD zoom (0 → 0.65)
+        const tWord = clamp(t / 0.65, 0, 1);
+        const wordScale = lerp(1, 8.0, tWord);
+
+        // Crossfade from word → full background (0.45 → 1)
+        const tReveal = clamp((t - 0.15) / 0.55, 0, 1);
+        const wordAlpha = lerp(1, 0, tReveal);
+        const bgAlpha = lerp(0, 1, tReveal);
+        const bgScale = lerp(1.12, 1.0, tReveal);
+
+        root.style.setProperty("--wordScale", wordScale.toFixed(4));
+        root.style.setProperty("--wordAlpha", wordAlpha.toFixed(4));
+        root.style.setProperty("--bgAlpha", bgAlpha.toFixed(4));
+        root.style.setProperty("--bgScale", bgScale.toFixed(4));
+      }
+
+      let ticking = false;
+      function requestTick() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(() => {
+            onScroll();
+            ticking = false;
+          });
+        }
+      }
+
+      window.addEventListener("scroll", requestTick, { passive: true });
+      window.addEventListener("resize", onScroll);
+      onScroll();
+    </script>
+    <script>
+      document
+        .querySelectorAll(".project-carousel .project")
+        .forEach((project) => {
+          const bg = project.dataset.bg;
+          if (bg) {
+            project.style.backgroundImage = `url(${bg})`;
+          }
+        });
+      function isVideoUrl(url) {
+        return typeof url === "string" && url.toLowerCase().endsWith(".mp4");
+      }
+
+      function setBackground(url) {
+        if (!url) return;
+        if (isVideoUrl(url) && bgVideo) {
+          bgVideo.src = url;
+          bgVideo.classList.add("is-visible");
+          bgA.classList.remove("is-visible");
+          bgB.classList.remove("is-visible");
+          bgVideo.play().catch(() => {});
+          return;
+        }
+
+        if (bgVideo) {
+          bgVideo.pause();
+          bgVideo.removeAttribute("src");
+          bgVideo.load();
+          bgVideo.classList.remove("is-visible");
+        }
+
+        const next = showingA ? bgB : bgA;
+        const current = showingA ? bgA : bgB;
+
+        next.style.backgroundImage = `url("${url}")`;
+        next.classList.add("is-visible");
+        current.classList.remove("is-visible");
+
+        showingA = !showingA;
+      }
+    </script>
+  </body>
+</html>

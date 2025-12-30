@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>whitMey — Portfolio</title>
+    <style>
+      :root {
+        --bg: #fff;
+        --fg: #111111;
+        --muted: rgba(17, 17, 17, 0.6);
+        --line: rgba(17, 17, 17, 0.2);
+        --accent: #dfdfdf; /* color for the M */
+        --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font);
+        overflow: hidden;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      /* --- FULLSCREEN BACKGROUND LAYERS --- */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        height: 100vh;
+      }
+      .bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        /* background: radial-gradient(
+          60% 60% at 50% 40%,
+          rgba(255, 255, 255, 0.4),
+          rgba(255, 255, 255, 0.85)
+        ); */
+        pointer-events: none;
+      }
+
+      .bg-layer {
+        position: absolute;
+        inset: -4%;
+        background-color: var(--bg);
+        background-size: cover;
+        background-position: center;
+        
+        transform: scale(1.03);
+        opacity: 0;
+        transition: opacity 550ms ease;
+        will-change: transform, opacity;
+        animation: breathe 7.5s ease-in-out infinite;
+      }
+      .bg-layer.is-visible {
+        opacity: 1;
+        filter: grayscale(10) contrast(0.95) brightness(1);
+      }
+
+      .bg-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100vw;
+        height: 100vh;
+        transform: translate(-50%, -50%) scale(1.12);
+        object-fit: cover;
+        filter: grayscale(10) contrast(.8) brightness(.8);
+        opacity: 0;
+        transition: opacity 550ms ease;
+        pointer-events: none;
+      }
+      .bg-video.is-visible {
+        opacity: 1;
+      }
+
+      @keyframes breathe {
+        0% {
+          transform: scale(1.03);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+        100% {
+          transform: scale(1.03);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bg-layer {
+          animation: none;
+        }
+        .bg-layer {
+          transition: none;
+        }
+      }
+
+      /* --- LAYOUT --- */
+      .wrap {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 26px 28px 18px;
+        gap: 18px;
+      }
+
+      header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .left-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-width: 820px;
+      }
+
+      .kicker {
+        margin: 1rem;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      h1 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 550;
+        letter-spacing: 0.01em;
+        line-height: 1.2;
+      }
+      .sub {
+        margin: 0;
+        color: var(--muted);
+        max-width: 70ch;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .about-btn {
+        margin: 1rem;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .about-btn:hover {
+        color: rgba(17, 17, 17, 0.06);
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 0;
+        padding-bottom: 100px;
+      }
+
+      /* --- PROJECT LIST --- */
+      .projects {
+        width: min(960px, 100%);
+        margin: 0 auto;
+        padding: 32px 0;
+      }
+
+      .project-carousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .project-track {
+        width: min(960px, 100%);
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      .project-list {
+        display: flex;
+        width: 100%;
+        gap: var(--project-gap, 32px);
+        transition: transform 480ms ease;
+        will-change: transform;
+        justify-content: flex-start;
+      }
+      .project-list.is-jumping {
+        transition: none;
+      }
+
+      .project {
+        flex: 0 0 280px;
+        min-height: 240px;
+        padding: 32px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-decoration: none;
+        color: inherit;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        text-align: center;
+        transition: color 200ms ease;
+      }
+
+      .project.is-active {
+        border-left-color: var(--line);
+        border-right-color: var(--line);
+      }
+      .project[data-clone="true"] {
+        pointer-events: none;
+      }
+
+      .project-title {
+        font-size: 22px;
+        letter-spacing: 0.02em;
+        margin: 0;
+        text-decoration: none;
+        text-transform: capitalize;
+        overflow-wrap: anywhere;
+        text-wrap: pretty;
+      }
+      .project-meta {
+        font-size: 16px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        overflow-wrap: anywhere;
+        text-wrap: pretty;
+      }
+
+      .project:hover .project-title,
+      .project:focus-visible .project-title {
+        font-size: 26px;
+        text-decoration: none;
+        text-underline-offset: 6px;
+        color: #fff;
+        text-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+      }
+      .project:hover .project-meta,
+      .project:focus-visible .project-meta {
+        color: #fff;
+        font-size: 18px;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .project:focus-visible {
+        box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.35);
+        border-radius: 8px;
+      }
+
+      .project-arrow {
+        appearance: none;
+        border: none;
+        background: transparent;
+        color: var(--fg);
+        font-size: 32px;
+        cursor: pointer;
+        padding: 8px 10px;
+        line-height: 1;
+        transition: transform 150ms ease;
+      }
+      .project-arrow:hover {
+        transform: translateX(4px);
+      }
+      .project-arrow.is-prev:hover {
+        transform: translateX(-4px);
+      }
+      .project-arrow:focus-visible {
+        outline: 2px solid rgba(124, 92, 255, 0.5);
+        border-radius: 6px;
+      }
+
+      footer {
+        display: flex;
+        justify-content: center;
+        padding-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        user-select: none;
+      }
+      .brand {
+        position: fixed;
+        left: 50%;
+        bottom: 16px;
+        transform: translateX(-50%);
+        font-size: 4rem;
+        letter-spacing: 0.18em;
+        text-transform: none;
+        color: rgba(17, 17, 17, 0.85);
+        z-index: 2;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 500;
+        font-style: normal;
+        transition: filter 200ms ease;
+      }
+      .brand .m {
+        color: var(--accent);
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .brand .m:focus-visible {
+        outline: 2px solid rgba(124, 92, 255, 0.6);
+        border-radius: 6px;
+        outline-offset: 4px;
+      }
+      .brand .m:hover {
+        text-decoration: none;
+      }
+      .brand:hover {
+        filter: invert(1);
+      }
+
+      /* small screens */
+      @media (max-width: 640px) {
+        body {
+          overflow: auto;
+        }
+        .wrap {
+          padding: 18px 16px 80px;
+        }
+        main {
+          align-items: center;
+          padding-bottom: 0;
+        }
+        .project-carousel {
+          flex-direction: column;
+          gap: 16px;
+          position: relative;
+        }
+        .project-track {
+          width: 100%;
+        }
+        .project-arrow {
+          transform: none;
+        }
+        .project-arrow.is-prev {
+          transform: rotate(90deg);
+        }
+        .project-arrow:not(.is-prev) {
+          transform: rotate(90deg);
+        }
+        .project-arrow:hover {
+          transform: none;
+        }
+        .project-arrow.is-prev:hover {
+          transform: rotate(90deg);
+        }
+        .project-arrow:not(.is-prev):hover {
+          transform: rotate(90deg);
+        }
+        .project-list {
+          flex-direction: column;
+          gap: 0;
+        }
+        .project {
+          flex: 0 0 100%;
+          min-height: 180px;
+          border: none;
+        }
+        .brand {
+          bottom: 10px;
+          font-size: clamp(3.8rem, 9vw, 5rem);
+          letter-spacing: 0.1em;
+          white-space: nowrap;
+        }
+        .projects {
+          padding: 1rem;
+        }
+      }
+
+      /* Optional: subtle “noise” look */
+      .noise {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        opacity: 0.06;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      }
+
+      .border-frame {
+        pointer-events: none;
+        position: fixed;
+        inset: 18px;
+        border: 2px solid rgba(17, 17, 17, 0.35);
+        border-radius: 20px;
+        z-index: 4;
+        transition: border-color 200ms ease;
+      }
+      .border-frame.is-light {
+        border-color: #ffffff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Background (two layers for crossfade) -->
+    <div class="bg" aria-hidden="true">
+      <div class="bg-layer is-visible" id="bgA"></div>
+      <div class="bg-layer" id="bgB"></div>
+      <video class="bg-video" id="bgVideo" muted playsinline loop></video>
+    </div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="border-frame" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <header>
+        <div class="left-meta">
+          <div class="kicker">Mariel Whitney Portfolio</div>
+        </div>
+
+        <a class="about-btn" id="aboutBtn" href="about.html">About</a>
+      </header>
+
+      <main>
+        <nav class="projects" aria-label="Projects">
+          <div class="project-carousel">
+            <button
+              class="project-arrow is-prev"
+              type="button"
+              id="projectsPrev"
+              aria-label="Previous projects"
+            >
+              <span aria-hidden="true">‹</span>
+            </button>
+            <div class="project-track">
+  <div class="project-list">
+
+    <a
+      class="project"
+      href="https://hope.edu/landing/basketball/tickets/index.html"
+      data-bg="ticket.jpg"
+    >
+      <p class="project-title">Tickets</p>
+      <p class="project-meta">
+        Redesigning the ticketing experience for clarity and ease of use.
+      </p>
+    </a>
+
+    <a
+      class="project"
+      href="https://webdesign.hope.edu/mariel.domnenko/labs/project/home.html"
+      data-bg="sr.png"
+    >
+      <p class="project-title">Study Room</p>
+      <p class="project-meta">
+        A focused study environment informed by psychology and habit design.
+      </p>
+    </a>
+
+    <a
+      class="project"
+      href="https://athletics.hope.edu/sports/football/stats"
+      data-bg="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=2532&auto=format&fit=crop"
+    >
+      <p class="project-title">Statistics</p>
+      <p class="project-meta">
+        Organizing historical athletic data into clear, readable tables.
+      </p>
+    </a>
+
+    <a
+      class="project"
+      href="https://magazine.hope.edu/"
+      data-bg="magazine.png"
+    >
+      <p class="project-title">Magazine</p>
+      <p class="project-meta">
+        Translating a print feature into a responsive web experience.
+      </p>
+    </a>
+
+    <a
+      class="project"
+      href="#"
+      data-bg="boat.mp4"
+    >
+      <p class="project-title">Object Customizer</p>
+      <p class="project-meta">
+        Real-time customization within a physics-driven environment.
+      </p>
+    </a>
+
+    <a
+      class="project"
+      href="#"
+      data-bg="splat.mp4"
+    >
+      <p class="project-title">Paint Interaction</p>
+      <p class="project-meta">
+        Expressive creation shaped by force, collision, and gravity.
+      </p>
+    </a>
+
+    <a
+      class="project"
+      href="#"
+      data-bg="anchor.png"
+    >
+      <p class="project-title">Hope.edu</p>
+      <p class="project-meta">
+        Improving layout, navigation, and content clarity across the site.
+      </p>
+    </a>
+
+  </div>
+</div>
+
+            <button
+              class="project-arrow"
+              type="button"
+              id="projectsNext"
+              aria-label="Next projects"
+            >
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+        </nav>
+      </main>
+    </div>
+
+    <div class="brand" aria-label="Brand">
+      whit<a class="m" href="about.html" aria-label="About whitmey">M</a>ey
+    </div>
+
+    <script>
+      // ---- Background crossfade swapper ----
+      const bgA = document.getElementById("bgA");
+      const bgB = document.getElementById("bgB");
+      const bgVideo = document.getElementById("bgVideo");
+      const projectTrack = document.querySelector(".project-track");
+      const projectList = document.querySelector(".project-list");
+      const prevBtn = document.getElementById("projectsPrev");
+      const nextBtn = document.getElementById("projectsNext");
+      const borderFrame = document.querySelector(".border-frame");
+      const projects = projectList ? Array.from(projectList.children) : [];
+      let allSlides = projects;
+      let hasClones = false;
+      let showingA = true;
+      let slideIndex = 0;
+      let activeProject = null;
+      let pendingSnapIndex = null;
+      let activeObserver = null;
+      let lastTapTarget = null;
+      let lastTapTime = 0;
+      const DOUBLE_TAP_MS = 400;
+
+      function isVideoUrl(url) {
+        return typeof url === "string" && url.toLowerCase().endsWith(".mp4");
+      }
+
+      function setBackground(url) {
+        if (!url) return;
+        if (isVideoUrl(url) && bgVideo) {
+          bgVideo.src = url;
+          bgVideo.classList.add("is-visible");
+          bgA.classList.remove("is-visible");
+          bgB.classList.remove("is-visible");
+          bgVideo.play().catch(() => {});
+          return;
+        }
+
+        if (bgVideo) {
+          bgVideo.pause();
+          bgVideo.removeAttribute("src");
+          bgVideo.load();
+          bgVideo.classList.remove("is-visible");
+        }
+
+        const next = showingA ? bgB : bgA;
+        const current = showingA ? bgA : bgB;
+
+        next.style.backgroundImage = `url("${url}")`;
+        next.classList.add("is-visible");
+        current.classList.remove("is-visible");
+
+        showingA = !showingA;
+      }
+
+      function resetBackground() {
+        bgA.style.backgroundImage = "";
+        bgB.style.backgroundImage = "";
+        bgA.classList.add("is-visible");
+        bgB.classList.remove("is-visible");
+        showingA = true;
+        if (bgVideo) {
+          bgVideo.pause();
+          bgVideo.removeAttribute("src");
+          bgVideo.load();
+          bgVideo.classList.remove("is-visible");
+        }
+      }
+
+      function setFrameHighlight(isActive) {
+        borderFrame?.classList.toggle("is-light", isActive);
+      }
+
+      function isMobileView() {
+        return window.matchMedia("(max-width: 640px)").matches;
+      }
+
+      function activateProject(link) {
+        const url = link?.dataset?.bg;
+        if (!url) return;
+        activeProject = link;
+        setBackground(url);
+        setFrameHighlight(true);
+      }
+
+      function deactivateProject() {
+        activeProject = null;
+        resetBackground();
+        setFrameHighlight(false);
+      }
+
+      function updateFocusStates() {
+        projects.forEach((project, idx) => {
+          project.tabIndex = idx === slideIndex ? 0 : -1;
+        });
+      }
+
+      function updateTrackSize() {
+        if (!projectTrack || !projects.length) return;
+        const active = projects[slideIndex];
+        if (!active) return;
+        projectTrack.style.height = `${active.offsetHeight}px`;
+      }
+
+      function getSlideMetrics() {
+        if (!projectList || !projects.length) {
+          return { width: 0, gap: 0 };
+        }
+        const slideWidth = projects[0].offsetWidth;
+        const styles = window.getComputedStyle(projectList);
+        const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+        return { width: slideWidth, gap };
+      }
+
+      function getOffsetForDisplayIndex(displayIndex) {
+        if (isMobileView()) {
+          let offset = 0;
+          for (let i = 0; i < displayIndex; i += 1) {
+            offset += allSlides[i]?.offsetHeight || 0;
+          }
+          return offset;
+        }
+        const { width, gap } = getSlideMetrics();
+        const trackWidth = projectTrack?.clientWidth || 0;
+        const centerOffset = (trackWidth - width) / 2;
+        return (width + gap) * displayIndex - centerOffset;
+      }
+
+      function getDisplayIndexForSlide(index) {
+        return hasClones ? index + 1 : index;
+      }
+
+      function setupClones() {
+        if (!projectList || projects.length < 2) return;
+        const firstClone = projects[0].cloneNode(true);
+        const lastClone = projects[projects.length - 1].cloneNode(true);
+        firstClone.dataset.clone = "true";
+        lastClone.dataset.clone = "true";
+        firstClone.setAttribute("aria-hidden", "true");
+        lastClone.setAttribute("aria-hidden", "true");
+        firstClone.tabIndex = -1;
+        lastClone.tabIndex = -1;
+        projectList.appendChild(firstClone);
+        projectList.insertBefore(lastClone, projectList.firstChild);
+        allSlides = Array.from(projectList.children);
+        hasClones = true;
+      }
+
+      function setActiveCard() {
+        projects.forEach((project, idx) => {
+          project.classList.toggle("is-active", idx === slideIndex);
+        });
+        updateTrackSize();
+        updateFocusStates();
+        const active = projects[slideIndex];
+        if (active && "ResizeObserver" in window) {
+          activeObserver?.disconnect();
+          activeObserver = new ResizeObserver(() => {
+            if (projects[slideIndex] === active) {
+              updateTrackSize();
+            }
+          });
+          activeObserver.observe(active);
+        }
+      }
+
+      function goToSlide(targetIndex) {
+        if (!projectList || !projects.length) return;
+
+        const maxIndex = Math.max(projects.length - 1, 0);
+        let displayIndex = targetIndex;
+        pendingSnapIndex = null;
+
+        if (hasClones && projects.length > 1) {
+          if (targetIndex > maxIndex) {
+            pendingSnapIndex = 0;
+            displayIndex = projects.length + 1;
+          } else if (targetIndex < 0) {
+            pendingSnapIndex = maxIndex;
+            displayIndex = 0;
+          } else {
+            slideIndex = targetIndex;
+            displayIndex = getDisplayIndexForSlide(slideIndex);
+            setActiveCard();
+          }
+        } else {
+          if (targetIndex > maxIndex) {
+            slideIndex = 0;
+          } else if (targetIndex < 0) {
+            slideIndex = maxIndex;
+          } else {
+            slideIndex = targetIndex;
+          }
+          displayIndex = getDisplayIndexForSlide(slideIndex);
+          setActiveCard();
+        }
+
+        const offset = getOffsetForDisplayIndex(displayIndex);
+        const axis = isMobileView() ? "Y" : "X";
+        projectList.style.transform = `translate${axis}(-${offset}px)`;
+      }
+
+      prevBtn?.addEventListener("click", () => goToSlide(slideIndex - 1));
+      nextBtn?.addEventListener("click", () => goToSlide(slideIndex + 1));
+
+      setupClones();
+
+      projectList?.addEventListener("transitionend", (event) => {
+        if (event.propertyName !== "transform") return;
+        if (pendingSnapIndex === null) return;
+        projectList.classList.add("is-jumping");
+        slideIndex = pendingSnapIndex;
+        const displayIndex = getDisplayIndexForSlide(slideIndex);
+        const offset = getOffsetForDisplayIndex(displayIndex);
+        const axis = isMobileView() ? "Y" : "X";
+        projectList.style.transform = `translate${axis}(-${offset}px)`;
+        setActiveCard();
+        requestAnimationFrame(() => {
+          projectList.classList.remove("is-jumping");
+        });
+        pendingSnapIndex = null;
+      });
+
+      projects.forEach((link) => {
+        const url = link.dataset.bg;
+        if (!url) return;
+
+        const activate = () => activateProject(link);
+        const deactivate = () => deactivateProject();
+
+        link.addEventListener("mouseenter", activate);
+        link.addEventListener("focus", activate);
+        link.addEventListener("mouseleave", deactivate);
+        link.addEventListener("blur", deactivate);
+
+        link.addEventListener("click", (event) => {
+          if (!isMobileView()) return;
+
+          const now = Date.now();
+          const isSameTarget = lastTapTarget === link;
+          const isDoubleTap = isSameTarget && now - lastTapTime <= DOUBLE_TAP_MS;
+
+          if (isDoubleTap) {
+            lastTapTarget = null;
+            lastTapTime = 0;
+            return;
+          }
+
+          event.preventDefault();
+          activateProject(link);
+          lastTapTarget = link;
+          lastTapTime = now;
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        goToSlide(slideIndex);
+      });
+
+      goToSlide(0);
+
+    </script>
+  </body>
+</html>

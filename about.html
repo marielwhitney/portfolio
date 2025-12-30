@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Micro+5&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/YOUR_KIT_ID.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>About — Mariel Whitney</title>
+
+    <style>
+      :root {
+        --fg: #fff;
+        --muted: rgba(255, 255, 255, 0.75);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: #000;
+      }
+
+      /* COVER */
+      .cover {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        color: var(--fg);
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      /* Background image */
+      .cover__bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("whitney.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center 58%;
+        animation: coverBreath 10s ease-in-out forwards;
+        transform-origin: center;
+        will-change: transform;
+      }
+
+      /* Fade bottom into black */
+      .cover__fade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.05) 0%,
+          rgba(0, 0, 0, 0.25) 55%,
+          rgba(0, 0, 0, 0.85) 82%,
+          rgba(0, 0, 0, 1) 100%
+        );
+        pointer-events: none;
+      }
+
+      /* Subtle vignette (optional but nice) */
+      .cover__vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          70% 70% at 50% 35%,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.55) 100%
+        );
+        pointer-events: none;
+      }
+
+      header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding: 26px 28px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 7;
+        pointer-events: none;
+      }
+
+      header a {
+        pointer-events: auto;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin: 1rem;
+      }
+      header a:hover {
+        color: var(--accent);
+      }
+
+      /* Big repeating name marquee */
+      .marquee {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 18px;
+        z-index: 2;
+        overflow: hidden;
+        padding: 10px 0 0;
+      }
+
+      .marquee__track {
+        display: flex;
+        width: max-content;
+        gap: 70px;
+        animation: marqueeMove 120s linear infinite;
+        will-change: transform;
+      }
+
+      .marquee__word {
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 0.9;
+        letter-spacing: 0.02em;
+        font-size: 160px;
+        white-space: nowrap;
+        color: #fff;
+        text-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      /* Make it seamless by duplicating content */
+      @keyframes marqueeMove {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* slow "breath" on initial load */
+      @keyframes coverBreath {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* If user prefers reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .marquee__track {
+          animation: none;
+        }
+        .cover__bg {
+          animation: none;
+        }
+      }
+
+      /* Mobile tweaks */
+      @media (max-width: 640px) {
+        .header a {
+          margin: 12px;
+        }
+
+        .marquee__word {
+          font-size: 120px;
+        }
+        .nav {
+          padding: 18px 16px;
+        }
+        .nav__right {
+          gap: 14px;
+        }
+        .marquee {
+          bottom: 12px;
+        }
+
+        .cover__bg {
+          background-position: 40%;
+        }
+      }
+       .project-carousel{
+          padding: 0;
+        }
+    </style>
+  </head>
+
+  <body>
+    <section class="cover" aria-label="About cover">
+      <div class="cover__bg" aria-hidden="true"></div>
+      <div class="cover__fade" aria-hidden="true"></div>
+      <div class="cover__vignette" aria-hidden="true"></div>
+
+      <header>
+        <a href="index.html">Mariel Whitney Portfolio</a>
+        <a href="https://www.linkedin.com/in/mariel-domnenko/">Contact</a>
+      </header>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <div class="marquee__word">Mariel Whitney</div>
+          <div class="marquee__word">Mariel Whitney</div>
+          <div class="marquee__word">Mariel Whitney</div>
+          <div class="marquee__word">Mariel Whitney</div>
+          <div class="marquee__word">Mariel Whitney</div>
+          <div class="marquee__word">Mariel Whitney</div>
+          <div class="marquee__word">Mariel Whitney</div>
+          <div class="marquee__word">Mariel Whitney</div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* ====== “cover-style” intro moment ====== */
+      .intro {
+        min-height: 100vh;
+        background: #000;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        padding: 110px 5px 28px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* subtle grid lines like the screenshot vibe */
+      .intro::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.06) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.06) 1px,
+            transparent 1px
+          );
+        background-size: 120px 120px;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      /* soft vignette */
+      .intro::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          70% 70% at 50% 35%,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0.85)
+        );
+        pointer-events: none;
+      }
+
+      .intro__inner {
+        position: relative;
+        z-index: 1;
+        /* width: min(980px, 100%); */
+      }
+
+      .intro__title {
+        margin: 5rem;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        line-height: 1.05;
+        font-size: clamp(44px, 6.2vw, 86px);
+        text-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        position: relative;
+        font-size: 150px;
+      }
+
+      /* outlined “ghost” layer behind the headline to make it pop */
+      .intro__title::before {
+        content: "My name is Mariel, with me you can…";
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(10px, 10px);
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.335);
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      /* ====== animated Mariel color shift (black → gray → white) ====== */
+      .name-shift {
+        display: inline-block;
+        font-weight: 700;
+
+        /* gradient clipped to text */
+        background: linear-gradient(90deg, #000, #777, #fff, #777, #000);
+        background-size: 400% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+
+        /* makes the “black” portion still readable on black bg */
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
+
+        animation: nameShift 12s ease-in-out infinite;
+      }
+
+      @keyframes nameShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* mobile: reduce the ghost offset a bit */
+      @media (max-width: 640px) {
+        .intro__title::before {
+          transform: translate(6px, 8px);
+        }
+      }
+
+      /* respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .name-shift {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .intro {
+          padding: 84px 18px 28px;
+        }
+        .intro__title {
+          margin: 0;
+          font-size: 7rem;
+          letter-spacing: 0.04em;
+        }
+
+        header a{
+          margin: 10px 2px;
+        }
+      }
+    </style>
+    <section class="intro" aria-label="About intro">
+      <div class="intro__inner">
+        <h2 class="intro__title">
+          My name is
+          <span class="name-shift" aria-label="Mariel">Mariel,</span>
+          with me you can…
+        </h2>
+      </div>
+    </section>
+
+    <style>
+      .about-stack {
+        --sat: 80%;
+        --lit: 55%;
+
+        --gray-bg: hsl(0, 0%, 0%);
+        --gray-line: hsla(0 0% 100% / 0.25);
+
+        --color-bg: hsl(var(--hue) var(--sat) 25%);
+        --color-line: hsla(var(--hue) 35% 85% / 0.35);
+
+        /* ✅ accent fades from gray -> color */
+        --accent: color-mix(
+          in hsl,
+          hsl(0, 0%, 0%) calc(100% - var(--color-on)),
+          hsl(var(--hue) var(--sat) var(--lit)) var(--color-on)
+        );
+
+        background: color-mix(
+          in hsl,
+          var(--gray-bg) calc(100% - var(--color-on)),
+          var(--color-bg) var(--color-on)
+        );
+
+        border-bottom: 1px solid
+          color-mix(
+            in hsl,
+            var(--gray-line) calc(100% - var(--color-on)),
+            var(--color-line) var(--color-on)
+          );
+
+        color: hsl(0 0% 98%);
+      }
+
+      .about-card--customizer {
+        background: color-mix(
+          in hsl,
+          rgba(255, 255, 255, 0.04) calc(100% - var(--color-on)),
+          color-mix(in hsl, var(--accent) 25%, transparent) var(--color-on)
+        );
+      }
+
+      /* Each row is full-width and separated */
+      .about-card,
+      .about-row {
+        width: 100%;
+        border-top: 1px solid var(--line);
+      }
+
+      .about-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: clamp(24px, 5vw, 56px);
+        padding: 5rem 2.5rem;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0)
+        );
+      }
+
+      .about-row {
+        min-height: clamp(120px, 18vh, 220px);
+      }
+
+      /* Typography */
+      .about-card__title {
+        margin: 0 0 12px;
+        font-size: clamp(38px, 5vw, 64px);
+        font-weight: 500;
+        letter-spacing: -0.02em;
+      }
+
+      .about-card__desc {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        margin: 0;
+        /* max-width: 34ch; */
+        font-size: 18px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      .about-card__controls {
+        min-width: min(380px, 40vw);
+        display: grid;
+        gap: 10px;
+        justify-items: end;
+      }
+
+      .about-slider__label {
+        display: none;
+        font-size: 14px;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      /* Slider */
+      .about-slider {
+        width: min(360px, 40vw);
+        accent-color: white;
+      }
+
+      /* Card 2 layout */
+      .about-card--text {
+        position: relative;
+      }
+
+      .about-card__preview {
+        margin-left: auto;
+        display: flex;
+        flex-direction: column; /* ✅ stack */
+        align-items: flex-end; /* right aligned */
+        justify-content: center;
+        gap: 8px;
+        min-width: min(360px, 40vw);
+      }
+
+      /* make the input actually visible + nice */
+      .about-input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 10px 0;
+        border-bottom: 1px solid hsla(0 0% 100% / 0.18); /* ✅ visible line */
+        font-size: 18px;
+        color: hsl(0 0% 92%);
+        caret-color: hsl(0 0% 100%); /* ✅ cursor shows */
+        text-align: right;
+      }
+
+      .about-input::placeholder {
+        color: hsl(0 0% 80%);
+        opacity: 0.35;
+      }
+
+      /* small counter */
+      .about-count {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .about-card__controls--text {
+        display: grid;
+        gap: 14px;
+        justify-items: end;
+      }
+
+      /* main preview text stays dominant */
+      .about-phrase {
+        font-size: 65px;
+        font-weight: 200;
+        line-height: 1;
+        color: hsl(0 0% 96%);
+        font-family: var(--phrase-font, inherit);
+      }
+
+      /* shared font var for the “Your text” phrase */
+      .about-stack {
+        --phrase-font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI",
+          sans-serif;
+      }
+
+      /* Base font used ONLY for Card 2 typing experience */
+      .about-stack {
+        --phrase-font-base: "Plus Jakarta Sans", system-ui, -apple-system,
+          "Segoe UI", sans-serif;
+
+        /* Chosen font used AFTER Card 3 */
+        --phrase-font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI",
+          sans-serif;
+      }
+
+      /* Card 2 stays base no matter what */
+      .about-phrase--base,
+      .about-input--base {
+        font-family: var(--phrase-font-base);
+      }
+
+      /* Everything that should change AFTER Card 3 */
+      .js-phrasePreview {
+        font-family: var(--phrase-font);
+      }
+
+      /* Card 3 tiles */
+      .about-fontTiles {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* Card 3 layout */
+      .about-card__controls--font {
+        display: grid;
+        gap: 12px;
+        justify-items: end;
+      }
+
+      .about-fontPreviewWrap {
+        display: grid;
+        justify-items: end;
+        gap: 6px;
+      }
+
+      .about-fontBtns {
+        display: flex;
+        gap: 12px;
+        pointer-events: auto;
+        z-index: 2;
+        padding: 10px 0;
+      }
+
+      .about-fontBtn {
+        width: 92px;
+        height: 72px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        cursor: pointer;
+        pointer-events: auto;
+      }
+
+      .about-fontBtn.is-active {
+        outline: 2px solid rgba(255, 255, 255, 0.45);
+        outline-offset: 3px;
+      }
+
+      /* Apply chosen font to the Card 2 phrase */
+      #phrasePreview {
+        font-family: var(
+          --phrase-font,
+          "Roboto",
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          sans-serif
+        );
+      }
+
+      /* phrase layout with icon */
+      .about-phrase {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .about-phraseIcon i {
+        font-size: 0.9em;
+        opacity: 0.9;
+      }
+
+      /* Card 4 controls */
+      .about-card__controls--icon {
+        display: grid;
+        gap: 12px;
+        justify-items: end;
+      }
+
+      .about-iconPreviewWrap {
+        display: grid;
+        justify-items: end;
+        gap: 6px;
+      }
+
+      /* icon buttons */
+      .about-iconBtns {
+        display: flex;
+        gap: 12px;
+        padding: 10px 0;
+      }
+
+      .about-iconBtn {
+        width: 72px;
+        height: 72px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+      }
+
+      .about-iconBtn:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .about-iconBtn.is-active {
+        outline: 2px solid rgba(255, 255, 255, 0.45);
+        outline-offset: 3px;
+      }
+
+      /* Card 5 controls */
+      .about-card__controls--style {
+        display: grid;
+        gap: 12px;
+        justify-items: end;
+      }
+
+      .about-stylePreviewWrap {
+        display: grid;
+        justify-items: end;
+        gap: 6px;
+      }
+
+      /* buttons */
+      .about-styleBtns {
+        display: flex;
+        gap: 12px;
+        padding: 10px 0;
+      }
+
+      .about-styleBtn {
+        width: 92px;
+        height: 72px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .about-styleBtn:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .about-styleBtn.is-active {
+        outline: 2px solid rgba(255, 255, 255, 0.45);
+        outline-offset: 3px;
+      }
+
+      /* Apply style ONLY to "after" previews (Card 5 and beyond) */
+      .js-phrasePreview--after {
+        font-weight: var(--phrase-weight-after, 500);
+        font-style: var(--phrase-style-after, normal);
+        text-transform: var(--phrase-transform-after, none);
+      }
+
+      /* Card 6: center stack text */
+      .about-card__text--center {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        text-align: center;
+        padding: 5rem 0px 5rem;
+      }
+
+      /* Final reveal panel (sits UNDER text, not overlay) */
+      .about-revealPanel {
+        width: min(720px, 92%);
+        margin-top: clamp(18px, 3vw, 28px);
+        padding: clamp(18px, 3vw, 26px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 18px;
+        background: rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+
+        /* scroll-in animation setup */
+        opacity: 1;
+        transform: none;
+        transform: translateY(18px) scale(0.98);
+        transition: opacity 600ms ease, transform 600ms ease;
+      }
+
+      .about-revealPanel.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .about-revealPreview {
+        display: grid;
+        justify-items: center;
+        margin-bottom: 14px;
+      }
+
+      .about-revealCodeWrap {
+        width: 100%;
+        display: grid;
+      }
+
+      .about-revealCode {
+        width: 100%;
+        min-height: 92px;
+        resize: none;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(0, 0, 0, 0.22);
+        color: rgba(255, 255, 255, 0.85);
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .about-revealReset {
+        margin-top: 14px;
+        padding: 8px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .about-revealReset:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      /* =========================
+   MOBILE PATCH (About stack)
+   Paste at VERY END of CSS
+========================= */
+      @media (max-width: 760px) {
+        /* kill horizontal scroll */
+        html,
+        body {
+          overflow-x: hidden;
+        }
+
+        /* give the stack breathing room */
+        .about-stack {
+          padding-inline: 0;
+        }
+
+        /* each card becomes a vertical stack */
+        .about-card {
+          flex-direction: column;
+          text-align: center;
+          gap: 18px;
+          padding: 50px 18px;
+        }
+
+        /* left text block full width */
+        .about-card__text {
+          width: 100%;
+        }
+
+        /* title/desc scale down a touch */
+        .about-card__title {
+          font-family: "Cormorant Garamond", serif;
+          font-size: 3rem;
+          line-height: 1.05;
+        }
+        .about-card__desc {
+          display: none;
+        }
+
+        /* IMPORTANT: remove the min-width that causes the black strip */
+        .about-card__controls {
+          width: 100%;
+          min-width: 0;
+          justify-items: center; /* was end */
+        }
+
+        .about-card__preview {
+          width: 100%;
+          min-width: 0;
+          align-items: center; /* was flex-end */
+          text-align: center;
+        }
+
+        /* previews should not be forced to the right */
+        .about-card__preview,
+        .about-fontPreviewWrap,
+        .about-iconPreviewWrap,
+        .about-stylePreviewWrap {
+          min-width: 0 !important;
+          width: 100%;
+          justify-items: center; /* was end */
+          text-align: center;
+          padding-top: 18px;
+        }
+
+        /* phrase sits left on mobile */
+        .about-phrase {
+          font-size: clamp(26px, 8vw, 40px);
+        }
+
+        /* Card 2 typing layout: make it feel natural on mobile */
+        .about-card__controls--text {
+          justify-items: start;
+          width: 100%;
+        }
+
+        .about-input {
+          text-align: left;
+          width: 100%;
+          font-size: 16px;
+        }
+
+        /* button rows wrap + shrink so they fit */
+        .about-fontBtns,
+        .about-iconBtns,
+        .about-styleBtns {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .about-input {
+          text-align: center; /* if you prefer right-aligned typing, remove this */
+        }
+
+        .about-fontBtn {
+          width: 72px;
+          height: 56px;
+        }
+
+        .about-iconBtn {
+          width: 56px;
+          height: 56px;
+          font-size: 18px;
+        }
+
+        .about-styleBtn {
+          width: 78px;
+          height: 56px;
+          font-size: 14px;
+        }
+
+        /* Card 6 centered section: reduce padding + panel width */
+        .about-card__text--center {
+          padding: 44px 0;
+        }
+
+        .about-revealPanel {
+          width: 100%;
+          margin-top: 16px;
+          padding: 16px;
+        }
+
+        .about-revealCode {
+          font-size: 11px;
+        }
+      }
+    </style>
+    <section
+      class="about-stack"
+      id="aboutCustomizer"
+      style="--hue: 0; --color-on: 0%"
+    >
+      <div class="about-card about-card--customizer">
+        <div class="about-card__text">
+          <h3 class="about-card__title">Make it about you</h3>
+          <p class="about-card__desc">
+            Design that begins with empathy. Your goals, your people, your
+            story.
+          </p>
+        </div>
+
+        <div class="about-card__controls" aria-label="Color theme controls">
+          <label class="about-slider__label" for="hueSlider">
+            Hue: <span id="hueValue">210</span>°
+          </label>
+          <input
+            id="hueSlider"
+            class="about-slider"
+            type="range"
+            min="0"
+            max="600"
+            value="0"
+            step="1"
+          />
+        </div>
+      </div>
+
+      <!-- Card 2: Type text (max 20) -->
+      <div class="about-card about-card--text">
+        <div class="about-card__text">
+          <h3 class="about-card__title">Assemble your vision</h3>
+          <p class="about-card__desc">
+            Bringing scattered ideas into a cohesive, intentional experience.
+          </p>
+        </div>
+
+        <div class="about-card__controls about-card__controls--text">
+          <div class="about-card__preview" id="phrasePreviewWrap">
+            <span class="about-phrase about-phrase--base">
+              <span class="js-phraseText">Your text</span>
+            </span>
+
+            <!-- Card 2 input -->
+            <input
+              id="phraseInput"
+              class="about-input about-input--base"
+              type="text"
+              maxlength="20"
+              placeholder="Type here…"
+            />
+            <div class="about-count"><span id="phraseCount">0</span>/20</div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3: Choose font -->
+      <div class="about-card about-card--font">
+        <div class="about-card__text">
+          <h3 class="about-card__title">Refine your appeal</h3>
+          <p class="about-card__desc">
+            Refining isn’t about changing who you are, it’s about clarifying it.
+          </p>
+        </div>
+
+        <div class="about-card__controls about-card__controls--font">
+          <div class="about-fontPreviewWrap">
+            <span class="about-phrase js-phrasePreview">
+              <span class="js-phraseText">Your text</span>
+            </span>
+          </div>
+
+          <div class="about-fontBtns">
+            <button
+              class="about-fontBtn"
+              type="button"
+              aria-pressed="true"
+              data-font='"Roboto Serif", serif'
+              style="font-family: 'Roboto Serif', serif"
+            >
+              F
+            </button>
+
+            <button
+              class="about-fontBtn"
+              type="button"
+              aria-pressed="false"
+              data-font='"Dancing Script", cursive'
+              style="font-family: Dancing Script, cursive"
+            >
+              f
+            </button>
+
+            <button
+              class="about-fontBtn"
+              type="button"
+              aria-pressed="false"
+              data-font='"Micro 5", sans-serif'
+              style="
+                font-family: 'Micro 5', sans-serif;
+                font-weight: 400;
+                font-size: large;
+              "
+            >
+              F
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Choose an icon -->
+      <div class="about-card about-card--icon">
+        <div class="about-card__text">
+          <h3 class="about-card__title">Integrate creativity with purpose</h3>
+          <p class="about-card__desc">
+            Where aesthetics meet strategy and design serves meaning.
+          </p>
+        </div>
+
+        <div class="about-card__controls about-card__controls--icon">
+          <!-- Preview -->
+          <div class="about-iconPreviewWrap">
+            <span class="about-phrase js-phrasePreview">
+              <span
+                class="about-phraseIcon js-phraseIcon js-phraseIcon--preview"
+              ></span>
+              <span class="about-phraseText js-phraseText">Your text</span>
+            </span>
+          </div>
+
+          <!-- Icon buttons -->
+          <div class="about-iconBtns">
+            <button
+              class="about-iconBtn is-active"
+              type="button"
+              aria-pressed="true"
+              data-icon=""
+            >
+              <span>—</span>
+            </button>
+
+            <button
+              class="about-iconBtn"
+              type="button"
+              aria-pressed="false"
+              data-icon="fa-solid fa-cloud"
+            >
+              <i class="fa-solid fa-cloud"></i>
+            </button>
+
+            <button
+              class="about-iconBtn"
+              type="button"
+              aria-pressed="false"
+              data-icon="fa-solid fa-bolt-lightning"
+            >
+              <i class="fa-solid fa-bolt-lightning"></i>
+            </button>
+
+            <button
+              class="about-iconBtn"
+              type="button"
+              aria-pressed="false"
+              data-icon="fa-solid fa-code"
+            >
+              <i class="fa-solid fa-code"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Text style -->
+      <div class="about-card about-card--style">
+        <div class="about-card__text">
+          <h3 class="about-card__title">Establish direction</h3>
+          <p class="about-card__desc">
+            Creating structure, flow, and intention in every interaction.
+          </p>
+        </div>
+
+        <div class="about-card__controls about-card__controls--style">
+          <!-- Preview (AFTER card 4, so includes chosen icon) -->
+          <div class="about-stylePreviewWrap">
+            <span class="about-phrase js-phrasePreview js-phrasePreview--after">
+              <span
+                class="about-phraseIcon js-phraseIcon js-phraseIcon--after"
+              ></span>
+              <span class="about-phraseText js-phraseText">Your text</span>
+            </span>
+          </div>
+
+          <!-- Style buttons -->
+          <div
+            class="about-styleBtns"
+            role="group"
+            aria-label="Text style options"
+          >
+            <button
+              class="about-styleBtn is-active"
+              type="button"
+              aria-pressed="true"
+              data-style="normal"
+            >
+              Aa
+            </button>
+
+            <button
+              class="about-styleBtn"
+              type="button"
+              aria-pressed="false"
+              data-style="bold"
+            >
+              <strong>B</strong>
+            </button>
+
+            <button
+              class="about-styleBtn"
+              type="button"
+              aria-pressed="false"
+              data-style="italic"
+            >
+              <em>I</em>
+            </button>
+
+            <button
+              class="about-styleBtn"
+              type="button"
+              aria-pressed="false"
+              data-style="caps"
+            >
+              CAPS
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Final reveal -->
+      <div class="about-card about-card--reveal">
+        <div class="about-card__text about-card__text--center">
+          <h3 class="about-card__title">Let your ideas become reality</h3>
+          <p class="about-card__desc">
+            Turning imagination into something tangible, usable, and alive.
+          </p>
+
+          <!-- Reveal panel UNDER the text -->
+          <div
+            class="about-revealPanel"
+            id="revealPanel"
+            aria-label="Final product preview"
+          >
+            <div class="about-revealPreview">
+              <span
+                class="about-phrase js-phrasePreview js-phrasePreview--after"
+              >
+                <span
+                  class="about-phraseIcon js-phraseIcon js-phraseIcon--after"
+                ></span>
+                <span class="about-phraseText js-phraseText">Your text</span>
+              </span>
+            </div>
+
+            <div class="about-revealCodeWrap">
+              <textarea
+                class="about-revealCode"
+                id="brandCode"
+                readonly
+              ></textarea>
+            </div>
+          </div>
+          <button class="about-revealReset" type="button" id="revealReset">
+            Reset
+          </button>
+        </div>
+      </div>
+    </section>
+    <script>
+      (() => {
+        // prevent double-init (fixes "Cannot redeclare..." + keeps hue working)
+        if (window.__aboutCustomizerInit) return;
+        window.__aboutCustomizerInit = true;
+
+        const about = document.getElementById("aboutCustomizer");
+
+        // ----- Card 1: Hue slider -----
+        const slider = document.getElementById("hueSlider");
+        const hueValue = document.getElementById("hueValue");
+
+        function setTheme(val) {
+          if (!about) return;
+          about.style.setProperty("--hue", val);
+
+          const intensity = val === 0 ? 0 : Math.min((val / 360) * 100, 100);
+          about.style.setProperty("--color-on", `${intensity}%`);
+
+          if (hueValue) hueValue.textContent = val;
+        }
+
+        if (slider) {
+          setTheme(Number(slider.value || 0));
+          slider.addEventListener("input", (e) =>
+            setTheme(Number(e.target.value))
+          );
+        } else {
+          setTheme(0);
+        }
+
+        // ----- Card 2: Phrase typing (max 20) -----
+        const phraseInput = document.getElementById("phraseInput");
+        const phraseCount = document.getElementById("phraseCount");
+        const phraseTextTargets = document.querySelectorAll(".js-phraseText");
+
+        function syncPhrase() {
+          if (!phraseInput) return;
+
+          const clean = (phraseInput.value || "").slice(0, 20);
+          if (clean !== phraseInput.value) phraseInput.value = clean;
+
+          if (phraseCount) phraseCount.textContent = clean.length;
+
+          const display = clean.trim().length ? clean : "Your text";
+          phraseTextTargets.forEach((el) => (el.textContent = display));
+        }
+
+        if (phraseInput) {
+          syncPhrase();
+          phraseInput.addEventListener("input", syncPhrase);
+        }
+
+        // ----- Card 3: Font picker -----
+        const fontBtns = document.querySelectorAll(".about-fontBtn");
+
+        function setPhraseFont(fontStr) {
+          if (!about) return;
+          about.style.setProperty("--phrase-font", fontStr);
+        }
+
+        fontBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const font = btn.dataset.font;
+            if (!font) return;
+
+            fontBtns.forEach((b) => {
+              b.classList.remove("is-active");
+              b.setAttribute("aria-pressed", "false");
+            });
+
+            btn.classList.add("is-active");
+            btn.setAttribute("aria-pressed", "true");
+
+            setPhraseFont(font);
+          });
+        });
+
+        // default font (updated)
+        setPhraseFont(
+          '"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif'
+        );
+
+        // ----- Card 4: Icon picker (preview shows, but "locks in" for AFTER card 4) -----
+        const iconBtns = document.querySelectorAll(".about-iconBtn");
+        const phraseIconsPreview = document.querySelectorAll(
+          ".js-phraseIcon--preview"
+        );
+        const phraseIconsAfter = document.querySelectorAll(
+          ".js-phraseIcon--after"
+        );
+
+        function renderIcon(targets, iconClass) {
+          targets.forEach((el) => {
+            el.innerHTML = iconClass ? `<i class="${iconClass}"></i>` : "";
+          });
+        }
+
+        function setPhraseIcon(iconClass) {
+          // show it in Card 4 preview
+          renderIcon(phraseIconsPreview, iconClass);
+
+          // apply only to cards AFTER card 4
+          renderIcon(phraseIconsAfter, iconClass);
+        }
+
+        iconBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const icon = btn.dataset.icon || "";
+
+            iconBtns.forEach((b) => {
+              b.classList.remove("is-active");
+              b.setAttribute("aria-pressed", "false");
+            });
+
+            btn.classList.add("is-active");
+            btn.setAttribute("aria-pressed", "true");
+
+            setPhraseIcon(icon);
+          });
+        });
+
+        // default = no icon
+        setPhraseIcon("");
+      })();
+
+      // ----- Card 5: Text style (applies AFTER card 4) -----
+      (() => {
+        const about = document.getElementById("aboutCustomizer");
+        if (!about) return;
+
+        const styleBtns = document.querySelectorAll(".about-styleBtn");
+        if (!styleBtns.length) return;
+
+        function setPhraseStyleAfter(mode) {
+          // defaults
+          let weight = "500";
+          let fontStyle = "normal";
+          let transform = "none";
+
+          if (mode === "bold") weight = "800";
+          if (mode === "italic") fontStyle = "italic";
+          if (mode === "caps") transform = "uppercase";
+
+          about.style.setProperty("--phrase-weight-after", weight);
+          about.style.setProperty("--phrase-style-after", fontStyle);
+          about.style.setProperty("--phrase-transform-after", transform);
+        }
+
+        styleBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const mode = btn.dataset.style || "normal";
+
+            styleBtns.forEach((b) => {
+              b.classList.remove("is-active");
+              b.setAttribute("aria-pressed", "false");
+            });
+
+            btn.classList.add("is-active");
+            btn.setAttribute("aria-pressed", "true");
+
+            setPhraseStyleAfter(mode);
+          });
+        });
+
+        // default
+        setPhraseStyleAfter("normal");
+
+        // ----- Card 6: Reveal panel appears on scroll (UNDER text) -----
+        const revealCard = document.querySelector(".about-card--reveal");
+        const revealPanel = document.getElementById("revealPanel");
+        const brandCode = document.getElementById("brandCode");
+        const phraseInput = document.getElementById("phraseInput");
+        const resetBtn = document.getElementById("revealReset");
+
+        function getCurrentBrandConfig() {
+          const cs = getComputedStyle(about);
+
+          const font =
+            cs.getPropertyValue("--phrase-font").trim() ||
+            '"Plus Jakarta Sans", sans-serif';
+          const weight =
+            cs.getPropertyValue("--phrase-weight-after").trim() || "500";
+          const style =
+            cs.getPropertyValue("--phrase-style-after").trim() || "normal";
+          const transform =
+            cs.getPropertyValue("--phrase-transform-after").trim() || "none";
+
+          const iconEl = document.querySelector(".js-phraseIcon--after i");
+          const iconClass = iconEl ? iconEl.className : "";
+
+          const phrase = (
+            document.querySelector(".js-phraseText")?.textContent || "Your text"
+          ).trim();
+
+          return { phrase, iconClass, font, weight, style, transform };
+        }
+
+        function updateBrandCode() {
+          if (!brandCode || !about) return;
+          const cfg = getCurrentBrandConfig();
+
+          brandCode.value = `--phrase-font: ${cfg.font};
+--phrase-weight-after: ${cfg.weight};
+--phrase-style-after: ${cfg.style};
+--phrase-transform-after: ${cfg.transform};
+icon: ${cfg.iconClass || "none"};
+text: "${cfg.phrase}";
+`;
+        }
+
+        updateBrandCode();
+
+        // keep code updated when user changes things
+        document.addEventListener("click", (e) => {
+          if (
+            e.target.closest(".about-fontBtn, .about-iconBtn, .about-styleBtn")
+          )
+            updateBrandCode();
+        });
+        if (phraseInput) phraseInput.addEventListener("input", updateBrandCode);
+
+        function syncPhrasePreview() {
+          if (!phraseInput) return;
+          const clean = (phraseInput.value || "").slice(0, 20);
+          if (clean !== phraseInput.value) phraseInput.value = clean;
+          const phraseCount = document.getElementById("phraseCount");
+          if (phraseCount) phraseCount.textContent = clean.length;
+          const display = clean.trim().length ? clean : "Your text";
+          document
+            .querySelectorAll(".js-phraseText")
+            .forEach((el) => (el.textContent = display));
+        }
+
+        function setIcons(iconClass) {
+          const preview = document.querySelectorAll(".js-phraseIcon--preview");
+          const after = document.querySelectorAll(".js-phraseIcon--after");
+          const html = iconClass ? `<i class="${iconClass}"></i>` : "";
+          preview.forEach((el) => (el.innerHTML = html));
+          after.forEach((el) => (el.innerHTML = html));
+        }
+
+        function setStyle(mode) {
+          let weight = "500";
+          let fontStyle = "normal";
+          let transform = "none";
+          if (mode === "bold") weight = "800";
+          if (mode === "italic") fontStyle = "italic";
+          if (mode === "caps") transform = "uppercase";
+          about.style.setProperty("--phrase-weight-after", weight);
+          about.style.setProperty("--phrase-style-after", fontStyle);
+          about.style.setProperty("--phrase-transform-after", transform);
+        }
+
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            const slider = document.getElementById("hueSlider");
+            if (slider) {
+              slider.value = "0";
+              slider.dispatchEvent(new Event("input", { bubbles: true }));
+            }
+
+            if (phraseInput) {
+              phraseInput.value = "";
+              syncPhrasePreview();
+            }
+
+            const fontDefault =
+              '"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif';
+            about.style.setProperty("--phrase-font", fontDefault);
+            document.querySelectorAll(".about-fontBtn").forEach((btn, idx) => {
+              const isActive = idx === 0;
+              btn.classList.toggle("is-active", isActive);
+              btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+            });
+
+            const iconBtns = document.querySelectorAll(".about-iconBtn");
+            iconBtns.forEach((btn, idx) => {
+              const isActive = idx === 0;
+              btn.classList.toggle("is-active", isActive);
+              btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+            });
+            setIcons("");
+
+            const styleBtns = document.querySelectorAll(".about-styleBtn");
+            styleBtns.forEach((btn) => {
+              const isActive = btn.dataset.style === "normal";
+              btn.classList.toggle("is-active", isActive);
+              btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+            });
+            setStyle("normal");
+
+            updateBrandCode();
+          });
+        }
+
+        // reveal when Card 6 enters the viewport (not the panel itself)
+        if (revealCard && revealPanel) {
+          const io = new IntersectionObserver(
+            (entries) => {
+              if (entries[0].isIntersecting) {
+                revealPanel.classList.add("is-visible");
+                io.disconnect(); // reveal once
+              }
+            },
+            { threshold: 0.35 }
+          );
+
+          io.observe(revealCard);
+        }
+      })();
+    </script>
+
+    <style>
+      /* ===== Career (auto vertical carousel) ===== */
+      .career {
+        background: #fff;
+        color: #111;
+        padding: clamp(80px, 10vh, 130px) 24px;
+      }
+
+      .career__sticky {
+        width: min(1180px, 100%);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(280px, 420px) 1fr;
+        gap: 56px;
+        align-items: start;
+      }
+
+      /* Left (stays visible) */
+      .career__left {
+        position: sticky;
+        top: 26px;
+        padding-top: 10px;
+      }
+
+      .career__big {
+        margin: 0 0 14px;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 700;
+        font-size: clamp(70px, 7.5vw, 140px);
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+      }
+
+      .career__sub {
+        margin: 0 0 22px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        color: rgba(17, 17, 17, 0.75);
+        max-width: 44ch;
+      }
+
+      .career__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 18px;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        text-decoration: none;
+        color: #111;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 14px;
+      }
+
+      /* Right (viewport for the carousel) */
+      .career__right {
+        max-height: calc(100vh - 120px);
+        overflow: auto; 
+        padding-right: 6px;
+        border-left: 1px solid rgba(0, 0, 0, 0.08);
+        padding-left: 26px;
+        position: relative;
+      }
+
+      /* This inner element is what we animate */
+      .career__loop {
+        display: block;
+        will-change: transform;
+      }
+
+      /* Pause when hovering anywhere on the scrolling area */
+      .career__right:hover .career__loop {
+        animation-play-state: paused;
+      }
+
+      /* Also pause when user focuses inside (keyboard accessibility) */
+      .career__right:focus-within .career__loop {
+        animation-play-state: paused;
+      }
+
+      /* Individual roles */
+      .role {
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        padding: 26px 0;
+        background: #fff;
+      }
+      .role:first-child {
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+      }
+
+      .role__top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .role__title {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 28px;
+        letter-spacing: -0.01em;
+      }
+
+      .role__pill {
+        white-space: nowrap;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.08);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 13px;
+        color: rgba(0, 0, 0, 0.75);
+      }
+
+      .role__meta {
+        margin-top: 8px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.65);
+      }
+
+      .role__desc {
+        margin: 14px 0 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 15px;
+        line-height: 1.8;
+        color: rgba(0, 0, 0, 0.78);
+      }
+
+      /* Mobile = normal page scroll (no carousel) */
+      @media (max-width: 900px) {
+        .career__sticky {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .career__left {
+          position: relative;
+          top: auto;
+        }
+        .career__right {
+          max-height: none;
+          overflow: visible;
+          border-left: none;
+          padding-left: 0;
+        }
+        .career__loop {
+          animation: none !important;
+          transform: none !important;
+        }
+
+        .role__top {
+          cursor: pointer;
+          padding-right: 26px;
+          position: relative;
+        }
+
+        .role__top::after {
+          content: "+";
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 20px;
+          line-height: 1;
+          color: rgba(0, 0, 0, 0.65);
+        }
+
+        .role.is-open .role__top::after {
+          content: "–";
+        }
+
+        .role__desc {
+          display: none;
+        }
+
+        .role.is-open .role__desc {
+          display: block;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .career__loop {
+          animation: none !important;
+          transform: none !important;
+        }
+      }
+    </style>
+
+    <section class="career" id="career" aria-label="Career timeline">
+      <div class="career__sticky">
+        <div class="career__left">
+          <h2 class="career__big">Career</h2>
+          <p class="career__sub">
+            Driven and multifaceted student with a passion for creative
+            technology, entrepreneurship, and community service. Experienced in
+            app design, web development, and coding. Strong creative skills.
+            Team player with an eye for detail.
+          </p>
+          <a
+            class="career__btn"
+            href="https://www.linkedin.com/in/mariel-domnenko/"
+            aria-label="View Linkedin"
+            >View Linkedin ↗</a
+          >
+        </div>
+
+        <!-- Carousel window -->
+        <div
+          class="career__right"
+          id="careerViewport"
+          aria-label="Career entries"
+        >
+          <!-- Animated content -->
+          <div class="career__loop" id="careerLoop">
+            <!-- YOUR roles (set A) -->
+            <article class="role">
+              <div class="role__top">
+                <h3 class="role__title">Web Assistant</h3>
+                <span class="role__pill">2025 – Present</span>
+              </div>
+              <div class="role__meta">
+                Hope College Public Affairs & Marketing
+              </div>
+              <p class="role__desc">
+                I support the college’s digital presence by identifying and
+                solving web-related issues using HTML and other tools. Whether
+                it's updating content, improving functionality, or
+                troubleshooting errors, I help ensure the college’s websites
+                remain accurate, accessible, and user-friendly.
+              </p>
+            </article>
+
+            <article class="role">
+              <div class="role__top">
+                <h3 class="role__title">Hiver</h3>
+                <span class="role__pill">2025</span>
+              </div>
+              <div class="role__meta">Internship</div>
+              <p class="role__desc">
+                A start-up focused on fostering genuine human connection among
+                young adults, I support both the creative and strategic sides of
+                our digital presence. I manage and create engaging social media
+                content to grow our community and increase brand visibility,
+                while also contributing to user experience design by
+                brainstorming, prototyping, and refining features that align
+                with our mission. My role allows me to blend storytelling,
+                visual design, and user-centered thinking to help build an
+                intentional and impactful platform.
+              </p>
+            </article>
+
+            <article class="role">
+              <div class="role__top">
+                <h3 class="role__title">Academic Success Center Intern</h3>
+                <span class="role__pill">2024</span>
+              </div>
+              <div class="role__meta">Hope College · Internship</div>
+              <p class="role__desc">
+                Assisted in organizing and matching tutors with tutees using
+                Google Sheets, gaining proficiency in data management and
+                communication. Supported the coordination of academic support
+                services and helped ensure smooth operations within the center.
+                Strengthened interpersonal and organizational skills through
+                frequent collaboration with students and staff.
+              </p>
+            </article>
+
+            <article class="role">
+              <div class="role__top">
+                <h3 class="role__title">Peer Advisor</h3>
+                <span class="role__pill">2024 - 2025</span>
+              </div>
+              <div class="role__meta">Hope College</div>
+              <p class="role__desc">
+                As a Peer Advisor, I supported first-year students by helping
+                them navigate their academic and personal transitions into
+                college life. I provided guidance on course planning, time
+                management, and campus resources, while also creating a
+                welcoming and inclusive environment through check-ins and
+                meaningful conversations. My goal was to empower students to
+                thrive and feel confident in their college journey.
+              </p>
+            </article>
+
+            <article class="role">
+              <div class="role__top">
+                <h3 class="role__title">Girls Who Code</h3>
+                <span class="role__pill">2022</span>
+              </div>
+              <div class="role__meta">Coding Program</div>
+              <p class="role__desc">
+                Enhancing skills in HTML and collaborating with peers on various
+                coding projects.
+              </p>
+            </article>
+
+            <article class="role">
+              <div class="role__top">
+                <h3 class="role__title">App Development</h3>
+                <span class="role__pill">2024</span>
+              </div>
+              <div class="role__meta">Unity · Summer Reserach Project</div>
+              <p class="role__desc">
+                Worked with Yifan Luo and Gillian Donley. We developed an
+                innovative Android application using the Unity engine, a premier
+                platform renowned for crafting immersive 2D and 3D experiences.
+                Our project expanded upon an existing app by integrating a
+                collection of fresh engaging mini-games designed to enhance
+                visual creativity and interactively. These additions were
+                designed to introduce new opportunities for users to explore
+                their artistic potential.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const viewport = document.getElementById("careerViewport");
+        const loop = document.getElementById("careerLoop");
+        if (!viewport || !loop) return;
+
+        const desktop = window.matchMedia(
+          "(min-width: 901px) and (pointer: fine)"
+        );
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+        let rafId = null;
+        let lastTs = 0;
+        let paused = false;
+        let pauseTimer = null;
+        let singleHeight = 0;
+
+        function stopAuto() {
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = null;
+          lastTs = 0;
+        }
+
+        function startAuto() {
+          stopAuto();
+          if (paused) return;
+          rafId = requestAnimationFrame(step);
+        }
+
+        function pauseAuto(ms = 1200) {
+          paused = true;
+          stopAuto();
+          clearTimeout(pauseTimer);
+          pauseTimer = setTimeout(() => {
+            paused = false;
+            startAuto();
+          }, ms);
+        }
+
+        function ensureDuplicate() {
+          const existingDup = loop.querySelector('[data-dup="true"]');
+          if (existingDup) existingDup.remove();
+          singleHeight = loop.scrollHeight;
+          const dupWrap = document.createElement("div");
+          dupWrap.setAttribute("data-dup", "true");
+          dupWrap.innerHTML = loop.innerHTML;
+          loop.appendChild(dupWrap);
+        }
+
+        function step(ts) {
+          if (paused) return;
+          if (!lastTs) lastTs = ts;
+          const delta = ts - lastTs;
+          lastTs = ts;
+
+          const speed = 15; 
+          viewport.scrollTop += (delta / 1000) * speed;
+
+          if (singleHeight && viewport.scrollTop >= singleHeight) {
+            viewport.scrollTop = 0;
+          }
+
+          rafId = requestAnimationFrame(step);
+        }
+
+        function setup() {
+          // Mobile / reduced motion: ensure no duplication + no animation
+          if (!desktop.matches || reduce.matches) {
+            stopAuto();
+            const dup = loop.querySelector('[data-dup="true"]');
+            if (dup) dup.remove();
+            initMobileDropdowns(true);
+            return;
+          }
+
+          ensureDuplicate();
+          startAuto();
+          initMobileDropdowns(false);
+        }
+
+        viewport.addEventListener("wheel", () => {
+          if (!desktop.matches) return;
+          pauseAuto(1400);
+        });
+        viewport.addEventListener("touchstart", () => pauseAuto(1600), {
+          passive: true,
+        });
+        viewport.addEventListener("pointerdown", () => pauseAuto(1600), {
+          passive: true,
+        });
+        viewport.addEventListener("focusin", () => pauseAuto(1600));
+
+        window.addEventListener("resize", setup);
+        setup();
+
+        function initMobileDropdowns(isMobile) {
+          const tops = loop.querySelectorAll(".role__top");
+          tops.forEach((top) => {
+            if (isMobile) {
+              if (top.dataset.dropdownBound === "true") return;
+              top.dataset.dropdownBound = "true";
+              top.setAttribute("role", "button");
+              top.setAttribute("tabindex", "0");
+              top.setAttribute("aria-expanded", "false");
+              top.addEventListener("click", () => {
+                const role = top.closest(".role");
+                if (!role) return;
+                const next = !role.classList.contains("is-open");
+                role.classList.toggle("is-open", next);
+                top.setAttribute("aria-expanded", next ? "true" : "false");
+              });
+              top.addEventListener("keydown", (e) => {
+                if (e.key !== "Enter" && e.key !== " ") return;
+                e.preventDefault();
+                top.click();
+              });
+            } else {
+              top.removeAttribute("role");
+              top.removeAttribute("tabindex");
+              top.setAttribute("aria-expanded", "false");
+              const role = top.closest(".role");
+              if (role) role.classList.remove("is-open");
+            }
+          });
+        }
+      })();
+    </script>
+
+    <style>
+      .project-carousel {
+        padding: 48px 0;
+        overflow: hidden;
+        background-color: var(--fg);
+      }
+
+      .carousel-track {
+        display: flex;
+        gap: 32px;
+        width: max-content;
+        animation: scrollProjects 60s linear infinite;
+      }
+
+      .project-carousel .project {
+        position: relative;
+        display: block;
+
+        width: 320px;
+        height: 200px;
+        overflow: hidden;
+
+        text-decoration: none;
+        color: #fff;
+
+        background-size: cover;
+        background-position: center;
+        filter: grayscale(1) contrast(1.05);
+        transition: filter 300ms ease, transform 300ms ease;
+      }
+
+      .project-carousel .project:hover {
+        filter: grayscale(0);
+        transform: translateY(-4px);
+      }
+
+      .project-carousel .project::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.65),
+          rgba(0, 0, 0, 0.15)
+        );
+      }
+
+      .project-carousel .project-title {
+        position: absolute;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #fff;
+      }
+
+      .project-carousel .project-meta {
+        display: none;
+      }
+
+      @keyframes scrollProjects {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      /* Respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .ticker__track {
+          animation: none;
+        }
+
+       
+      }
+    </style>
+    <section class="project-carousel">
+      <div class="carousel-track project-list">
+        <a class="project" href="magazine.html" data-bg="magazine.png">
+          <p class="project-title">Magazine</p>
+        </a>
+
+        <a class="project" href="object.html" data-bg="boatproject.png">
+          <p class="project-title">Object Customizer</p>
+        </a>
+
+        <a class="project" href="paint.html" data-bg="splat.png">
+          <p class="project-title">Paint Splat</p>
+        </a>
+
+        <a class="project" href="hope.html" data-bg="hope.jpg">
+          <p class="project-title">Hope.edu</p>
+        </a>
+
+        <a class="project" href="ticket.html" data-bg="ticket.jpg">
+          <p class="project-title">Tickets</p>
+        </a>
+
+        <a class="project" href="sr.html" data-bg="sr.png">
+          <p class="project-title">Study Room</p>
+        </a>
+
+        <a
+          class="project"
+          href="stats.html"
+          data-bg="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=2532&auto=format&fit=crop"
+        >
+          <p class="project-title">Statistics</p>
+        </a>
+
+        <!-- DUPLICATE FOR SEAMLESS LOOP -->
+        <a class="project" href="magazine.html" data-bg="magazine.png">
+          <p class="project-title">Magazine</p>
+        </a>
+
+        <a class="project" href="object.html" data-bg="boatproject.png">
+          <p class="project-title">Object Customizer</p>
+        </a>
+      </div>
+    </section>
+    <script>
+      document
+        .querySelectorAll(".project-carousel .project")
+        .forEach((project) => {
+          const bg = project.dataset.bg;
+          if (bg) {
+            project.style.backgroundImage = `url(${bg})`;
+          }
+        });
+      function isVideoUrl(url) {
+        return typeof url === "string" && url.toLowerCase().endsWith(".mp4");
+      }
+
+      function setBackground(url) {
+        if (!url) return;
+        if (isVideoUrl(url) && bgVideo) {
+          bgVideo.src = url;
+          bgVideo.classList.add("is-visible");
+          bgA.classList.remove("is-visible");
+          bgB.classList.remove("is-visible");
+          bgVideo.play().catch(() => {});
+          return;
+        }
+
+        if (bgVideo) {
+          bgVideo.pause();
+          bgVideo.removeAttribute("src");
+          bgVideo.load();
+          bgVideo.classList.remove("is-visible");
+        }
+
+        const next = showingA ? bgB : bgA;
+        const current = showingA ? bgA : bgB;
+
+        next.style.backgroundImage = `url("${url}")`;
+        next.classList.add("is-visible");
+        current.classList.remove("is-visible");
+
+        showingA = !showingA;
+      }
+    </script>
+
+  </body>
+</html>
