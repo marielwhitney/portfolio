@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>whitMey — Portfolio</title>
+    <title>Paint Splat — Portfolio</title>
     <style>
       :root {
         --bg: #fff;
@@ -33,7 +33,7 @@
         color: var(--fg);
         font-family: "Cormorant Garamond", serif;
         overflow-x: hidden;
-        overflow-y: auto; /* IMPORTANT: we need scroll */
+        overflow-y: auto; 
       }
 
       /* --- BACKGROUND --- */
@@ -61,7 +61,7 @@
         opacity: 1;
       }
 
-      /* optional: faint wash so text stays readable */
+     
       .bg::after {
         content: "";
         position: absolute;
@@ -125,7 +125,7 @@
 
       /* --- SCROLL ZOOM SCENE --- */
       .scene {
-        /* gives us scroll distance */
+       
         height: 220vh;
         display: block;
       }
@@ -136,7 +136,7 @@
         height: 100vh;
         display: grid;
         place-items: center;
-        padding: 120px 24px 120px; /* room for header + brand etc. */
+        padding: 120px 24px 120px; 
       }
 
       .scene__content {
@@ -152,7 +152,7 @@
         font-weight: 600;
         letter-spacing: 0.02em;
         line-height: 0.95;
-        font-size: clamp(56px, 9vw, 140px); /* BIG like “Think BIG” */
+        font-size: clamp(56px, 9vw, 140px); 
       }
 
       .scene__subtitle {
@@ -167,7 +167,7 @@
       .zoom-section {
         position: relative;
         height: 200vh;
-        background: transparent; /* was #fff */
+        background: transparent; 
       }
 
       .zoom-sticky {
@@ -177,7 +177,7 @@
         display: grid;
         place-items: center;
         overflow: hidden;
-        background: transparent; /* was #fff */
+        background: transparent; 
       }
       .zoom-title {
         -webkit-text-stroke: 0.01px transparent;
@@ -214,7 +214,6 @@
         background: #fff;
       }
 
-      /* Shared “image in text” style */
       .zoom-word {
         color: transparent;
         background-image: url("splat.png");
@@ -238,7 +237,7 @@
         will-change: transform, opacity;
       }
 
-      /* Optional: keep edges crisp */
+     
       .zoom-word {
         -webkit-text-stroke: 0.01px transparent;
       }
@@ -309,7 +308,6 @@
         color: rgba(17, 17, 17, 0.8);
         line-height: 1.8;
       }
-      /* If you want the image to “take over” as you zoom in, we fade the wash */
       .bg-wash-off .bg::after {
         background: transparent;
       }
@@ -373,7 +371,7 @@
         background: rgba(255, 255, 255, 0.12);
       }
 
-      /* Seamless: move by half the track (because we duplicated items) */
+     
       @keyframes tickerMove {
         from {
           transform: translateX(0);
@@ -453,7 +451,7 @@
           transform: translateX(-50%);
         }
       }
-      /* Respect reduced motion */
+    
       @media (prefers-reduced-motion: reduce) {
         .ticker__track {
           animation: none;
