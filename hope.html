@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,10 +6,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>Hope College — Portfolio</title>
+
+    <title>Font Playground — Portfolio</title>
     <style>
       :root {
         --bg: #fff;
@@ -186,7 +191,7 @@
       .zoom-bg {
         position: absolute;
         inset: 0;
-        background: url("hope.jpg") center/cover no-repeat;
+        background: url("fp-ss.png") center/cover no-repeat;
         opacity: var(--bgAlpha, 0);
         transform: scale(var(--bgScale, 1.05));
         will-change: opacity, transform;
@@ -214,7 +219,7 @@
       /* Shared “image in text” style */
       .zoom-word {
         color: transparent;
-        background-image: url("hope.jpg");
+        background-image: url("fp-ss.png");
         background-size: cover;
         background-position: center;
         -webkit-background-clip: text;
@@ -264,6 +269,7 @@
         grid-column: 2;
       }
 
+
       a {
         text-decoration: none;
         color: #000;
@@ -306,7 +312,10 @@
         color: rgba(17, 17, 17, 0.8);
         line-height: 1.8;
       }
-      /* If you want the image to “take over” as you zoom in, we fade the wash */
+
+      .info-copy a {
+        text-decoration: underline;
+      }
       .bg-wash-off .bg::after {
         background: transparent;
       }
@@ -362,7 +371,9 @@
         text-transform: uppercase;
         white-space: nowrap;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: transform 160ms ease, background 160ms ease;
+        transition:
+          transform 160ms ease,
+          background 160ms ease;
       }
 
       .ticker__item:hover {
@@ -406,7 +417,9 @@
         background-size: cover;
         background-position: center;
         filter: grayscale(1) contrast(1.05);
-        transition: filter 300ms ease, transform 300ms ease;
+        transition:
+          filter 300ms ease,
+          transform 300ms ease;
       }
 
       .project-carousel .project:hover {
@@ -487,7 +500,7 @@
           grid-column: 1;
         }
 
-         .zoom-word{
+        .zoom-word {
           font-size: clamp(75px, 15vw, 250px);
         }
       }
@@ -514,46 +527,41 @@
           <div class="zoom-bg" aria-hidden="true"></div>
 
           <!-- Stage A: whole word -->
-          <h2 class="zoom-title zoom-word" id="zoomWord">Hope.Edu</h2>
+          <h2 class="zoom-title zoom-word" id="zoomWord">Font Playground</h2>
         </div>
       </section>
 
       <section class="info-section" id="information">
         <div class="info-inner">
-          <a href="https://hope.edu/">
-            <h3 class="info-heading">Hope College Website</h3></a
-          >
+          <a href="https://marielwhitney.github.io/font-playground/">
+            <h3 class="info-heading">Font Playground</h3>
+          </a>
           <hr class="info-rule" />
           <div class="info-grid">
-            <p class="info-lede">Web Assistant</p>
+            <p class="info-lede">Personal Project </p>
             <div class="info-copy">
               <p>
-                I partnered with teams across Hope College to support multiple
-                website updates, focusing on improving usability, navigation,
-                and visual clarity across institutional digital platforms.
+                I created <a href="https://marielwhitney.github.io/font-playground/">Font Playground</a> as an interactive web project that
+                lets users experiment with typography and color combinations in
+                real time. The goal was to design a playful, hands-on space
+                where people can explore fonts visually rather than just viewing
+                static examples, making the experience both creative and
+                engaging.
               </p>
               <p>
-                Working closely with the Boerigter team at Hope College, I
-                helped modernize the Boerigter Center website by revising
-                layouts, updating program information, and improving navigation
-                through Modern Campus. This project emphasized clean design and
-                an intuitive content management experience for both visitors and
-                internal staff.
+                Built for my ART-105 course, this project focuses on usability
+                and interaction, allowing users to easily test different type
+                styles, adjust visual pairings, and discover combinations that
+                work well together. It emphasizes intuitive controls, immediate
+                feedback, and a clean layout so the interface feels simple,
+                responsive, and fun to use.
               </p>
               <p>
-                I also collaborated with Hope College’s Center for Leadership to
-                design and build the website for Lead with Hope, an immersive
-                leadership retreat for emerging and established leaders. The
-                site was designed with a strong focus on user experience,
-                ensuring clarity, engagement, and alignment with the retreat’s
-                core values.
-              </p>
-              <p>
-                In addition to these projects, I contributed to ongoing
-                adjustments across the broader Hope College website, gaining
-                experience working within a large, structured CMS while
-                balancing brand consistency, accessibility, and user-centered
-                design.
+                Through this project, I explored front-end development and
+                design principles while combining creativity with functionality.
+                Font Playground highlights my interest in interactive design,
+                user experience, and building digital tools that inspire
+                experimentation, creativity, and visual exploration.
               </p>
             </div>
           </div>
@@ -583,6 +591,10 @@
 
           <a class="project" href="sr.html" data-bg="sr.png">
             <p class="project-title">Study Room</p>
+          </a>
+
+          <a class="project" href="fp.html" data-bg="fp-ss.png">
+            <p class="project-title">Font Playground</p>
           </a>
 
           <a
