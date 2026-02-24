@@ -58,10 +58,10 @@
       .cover__bg {
         position: absolute;
         inset: 0;
-        background-image: url("whitney.jpeg");
+        background-image: url("profile.jpeg");
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: center 23%;
+        background-position: center 50%;
         animation: coverBreath 10s ease-in-out forwards;
         transform-origin: center;
         will-change: transform;
@@ -407,6 +407,11 @@
         );
       }
 
+      /* Keep the final reveal row neutral; color lives inside the panel */
+      .about-card.about-card--reveal {
+        background: #000;
+      }
+
       /* Each row is full-width and separated */
       .about-card,
       .about-row {
@@ -726,9 +731,18 @@
         width: min(720px, 92%);
         margin-top: clamp(18px, 3vw, 28px);
         padding: clamp(18px, 3vw, 26px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        border: 1px solid
+          color-mix(
+            in hsl,
+            var(--gray-line) calc(100% - var(--color-on)),
+            var(--color-line) var(--color-on)
+          );
         border-radius: 18px;
-        background: rgba(0, 0, 0, 0.28);
+        background: color-mix(
+          in hsl,
+          var(--gray-bg) calc(100% - var(--color-on)),
+          var(--color-bg) var(--color-on)
+        );
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
 
@@ -745,27 +759,11 @@
       }
 
       .about-revealPreview {
-        display: grid;
-        justify-items: center;
-        margin-bottom: 14px;
-      }
-
-      .about-revealCodeWrap {
         width: 100%;
         display: grid;
-      }
-
-      .about-revealCode {
-        width: 100%;
-        min-height: 92px;
-        resize: none;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        background: rgba(0, 0, 0, 0.22);
-        color: rgba(255, 255, 255, 0.85);
-        padding: 12px 14px;
-        border-radius: 12px;
-        font-size: 12px;
-        line-height: 1.35;
+        place-items: center;
+        text-align: center;
+        min-height: 171px; /* preserve panel height after removing code area */
       }
 
       .about-revealReset {
@@ -908,8 +906,8 @@
           padding: 16px;
         }
 
-        .about-revealCode {
-          font-size: 11px;
+        .about-revealPreview {
+          min-height: 146px;
         }
       }
     </style>
@@ -1173,14 +1171,6 @@
                 ></span>
                 <span class="about-phraseText js-phraseText">Your text</span>
               </span>
-            </div>
-
-            <div class="about-revealCodeWrap">
-              <textarea
-                class="about-revealCode"
-                id="brandCode"
-                readonly
-              ></textarea>
             </div>
           </div>
           <button class="about-revealReset" type="button" id="revealReset">
@@ -2013,52 +2003,56 @@ text: "${cfg.phrase}";
       }
 
        
-      }
+      
     </style>
     <section class="project-carousel">
-      <div class="carousel-track project-list">
-        <a class="project" href="magazine.html" data-bg="magazine.png">
-          <p class="project-title">Magazine</p>
-        </a>
+        <div class="carousel-track project-list">
+          <a class="project" href="magazine.html" data-bg="magazine.png">
+            <p class="project-title">Magazine</p>
+          </a>
 
-        <a class="project" href="object.html" data-bg="boatproject.png">
-          <p class="project-title">Object Customizer</p>
-        </a>
+          <a class="project" href="object.html" data-bg="boatproject.png">
+            <p class="project-title">Object Customizer</p>
+          </a>
 
-        <a class="project" href="paint.html" data-bg="splat.png">
-          <p class="project-title">Paint Splat</p>
-        </a>
+          <a class="project" href="paint.html" data-bg="splat.png">
+            <p class="project-title">Paint Splat</p>
+          </a>
 
-        <a class="project" href="hope.html" data-bg="hope.jpg">
-          <p class="project-title">Hope.edu</p>
-        </a>
+          <a class="project" href="hope.html" data-bg="hope.jpg">
+            <p class="project-title">Hope.edu</p>
+          </a>
 
-        <a class="project" href="ticket.html" data-bg="ticket.jpg">
-          <p class="project-title">Tickets</p>
-        </a>
+          <a class="project" href="ticket.html" data-bg="ticket.jpg">
+            <p class="project-title">Tickets</p>
+          </a>
 
-        <a class="project" href="sr.html" data-bg="sr.png">
-          <p class="project-title">Study Room</p>
-        </a>
+          <a class="project" href="sr.html" data-bg="sr.png">
+            <p class="project-title">Study Room</p>
+          </a>
 
-        <a
-          class="project"
-          href="stats.html"
-          data-bg="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=2532&auto=format&fit=crop"
-        >
-          <p class="project-title">Statistics</p>
-        </a>
+          <a class="project" href="fp.html" data-bg="fp-ss.png">
+            <p class="project-title">Font Playground</p>
+          </a>
 
-        <!-- DUPLICATE FOR SEAMLESS LOOP -->
-        <a class="project" href="magazine.html" data-bg="magazine.png">
-          <p class="project-title">Magazine</p>
-        </a>
+          <a
+            class="project"
+            href="stats.html"
+            data-bg="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=2532&auto=format&fit=crop"
+          >
+            <p class="project-title">Statistics</p>
+          </a>
 
-        <a class="project" href="object.html" data-bg="boatproject.png">
-          <p class="project-title">Object Customizer</p>
-        </a>
-      </div>
-    </section>
+          <!-- DUPLICATE FOR SEAMLESS LOOP -->
+          <a class="project" href="magazine.html" data-bg="magazine.png">
+            <p class="project-title">Magazine</p>
+          </a>
+
+          <a class="project" href="object.html" data-bg="boatproject.png">
+            <p class="project-title">Object Customizer</p>
+          </a>
+        </div>
+      </section>
     <script>
       document
         .querySelectorAll(".project-carousel .project")
