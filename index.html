@@ -16,7 +16,7 @@
         --fg: #111111;
         --muted: rgba(17, 17, 17, 0.6);
         --line: rgba(17, 17, 17, 0.2);
-        --accent: #dfdfdf; /* color for the M */
+        --accent: #dfdfdf; 
         --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
           Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       }
@@ -37,7 +37,7 @@
         font-family: "Cormorant Garamond", serif;
       }
 
-      /* --- FULLSCREEN BACKGROUND LAYERS --- */
+      
       .bg {
         position: fixed;
         inset: 0;
@@ -49,11 +49,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        /* background: radial-gradient(
-          60% 60% at 50% 40%,
-          rgba(255, 255, 255, 0.4),
-          rgba(255, 255, 255, 0.85)
-        ); */
+        
         pointer-events: none;
       }
 
@@ -113,7 +109,7 @@
         }
       }
 
-      /* --- LAYOUT --- */
+      
       .wrap {
         position: relative;
         z-index: 1;
@@ -125,10 +121,32 @@
       }
 
       header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding: 26px 28px;
         display: flex;
-        align-items: flex-start;
         justify-content: space-between;
-        gap: 16px;
+        z-index: 7;
+        pointer-events: none;
+      }
+
+      header a {
+        pointer-events: auto;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 14px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin: 1rem;
+      }
+      header a:hover {
+        color: var(--accent);
+      }
+
+      header a:first-child {
+        max-width: 190px;
       }
 
       .left-meta {
@@ -181,7 +199,7 @@
         padding-bottom: 100px;
       }
 
-      /* --- PROJECT LIST --- */
+      
       .projects {
         width: min(960px, 100%);
         margin: 0 auto;
@@ -192,7 +210,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 18px;
       }
 
       .project-track {
@@ -208,16 +225,16 @@
       .project-list {
         display: flex;
         width: 100%;
-        gap: var(--project-gap, 32px);
+        gap: var(--project-gap, 10px);
         will-change: scroll-position;
         justify-content: flex-start;
          width: max-content;
       }
 
       .project {
-        flex: 0 0 280px;
+        flex: 0 0 325px;
         min-height: 240px;
-        padding: 35px 15px;
+        padding: 35px 0px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -230,9 +247,7 @@
         scroll-snap-align: center;
       }
 
-      /* .project[data-clone="true"] {
-        pointer-events: none;
-      } */
+      
 
       .project-title {
         font-weight: 600;
@@ -279,7 +294,7 @@
       .project:hover .project-meta,
       .project:focus-visible .project-meta {
         color: #fff;
-        font-size: 18px;
+        font-size: 17px;
         text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       }
 
@@ -298,6 +313,12 @@
         padding: 8px 10px;
         line-height: 1;
         transition: transform 150ms ease;
+      }
+      .project-arrow.is-prev {
+        margin-right: 8px;
+      }
+      .project-arrow:not(.is-prev) {
+        margin-left: 8px;
       }
       .project-arrow:hover {
         transform: translateX(4px);
@@ -378,7 +399,7 @@
         }
       }
 
-      /* small screens */
+      
       @media (max-width: 640px) {
         body {
           overflow: auto;
@@ -450,7 +471,7 @@
         }
       }
 
-      /* Optional: subtle “noise” look */
+      
       .noise {
         pointer-events: none;
         position: fixed;
@@ -476,7 +497,7 @@
   </head>
 
   <body>
-    <!-- Background (two layers for crossfade) -->
+    
     <div class="bg" aria-hidden="true">
       <div class="bg-layer is-visible" id="bgA"></div>
       <div class="bg-layer" id="bgB"></div>
@@ -487,13 +508,9 @@
 
     <div class="wrap">
       <header>
-        <div class="left-meta">
-          <div class="kicker">Mariel Whitney Portfolio</div>
-        </div>
-
-        <a class="about-btn" id="aboutBtn" href="about.html">About</a>
+        <a href="index.html">Mariel Whitney Portfolio</a>
+        <a href="about.html">About</a>
       </header>
-
       <main>
         <nav class="projects" aria-label="Projects">
           <div class="project-carousel">
@@ -519,7 +536,7 @@
       <p class="project-hint">(double click to learn more)</p>
     </a>
 
-     <a
+    <a
       class="project"
       href="haworth.html"
       data-bg="haworth-hotel.png"
@@ -529,6 +546,15 @@
         A redesign to improve user experience and modernize the look and feel.
       </p>
       <p class="project-hint">(double click to learn more)</p>
+    </a>
+
+    <a class="project" href="anchor.html" data-bg="anchor-hp.png">
+      <p class="project-title">The Anchor</p>
+       <p class="project-meta">
+      Simplified and improved site experience for articles newsletter content.
+      </p>
+      <p class="project-hint">(double click to learn more)</p>
+   
     </a>
 
     <a
@@ -593,6 +619,18 @@
 
      <a
       class="project"
+      href="fp.html"
+      data-bg="fp-ss.png"
+    >
+      <p class="project-title">Font Playground</p>
+      <p class="project-meta">
+        Experiment with typography and color combinations in real time.
+      </p>
+      <p class="project-hint">(double click to learn more)</p>
+    </a>
+
+     <a
+      class="project"
       href="sr.html"
       //href="https://webdesign.hope.edu/mariel.domnenko/labs/project/home.html"
       data-bg="sr.png"
@@ -604,21 +642,7 @@
       <p class="project-hint">(double click to learn more)</p>
     </a>
 
-     <a
-      class="project"
-      href="fp.html"
-      data-bg="fp-ss.png"
-    >
-      <p class="project-title">Font Playground</p>
-      <p class="project-meta">
-        Experiment with typography and color combinations in real time.
-      </p>
-      <p class="project-hint">(double click to learn more)</p>
-    </a>
-
-    
-  
-
+     
 
   </div>
 </div>
@@ -987,7 +1011,7 @@
       if (isDoubleTap) {
         lastTapTarget = null;
         lastTapTime = 0;
-        return; // allow normal navigation
+        return; 
       }
 
           event.preventDefault();
