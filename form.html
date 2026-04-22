@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Contact — Mariel Whitney</title>
+
+    <style>
+      :root {
+        --muted: rgba(255, 255, 255, 0.75);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: #000;
+        color: #fff;
+      }
+
+      header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding: 26px 28px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 7;
+        pointer-events: none;
+      }
+
+      header a {
+        pointer-events: auto;
+        color: rgba(255, 255, 255, 0.75);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 14px;
+        letter-spacing: 0.22em;
+        margin: 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      header a:hover {
+        color: #fff;
+      }
+
+      header a:first-child {
+        max-width: 190px;
+      }
+
+      .contact-section {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: 120px 20px 80px;
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 16px;
+        width: min(100%, 620px);
+        margin: 0 auto;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 15px;
+        line-height: 1.35;
+        padding: 14px 16px;
+        outline: none;
+      }
+
+      .contact-form textarea {
+        min-height: 160px;
+        resize: vertical;
+      }
+
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.52);
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: rgba(255, 255, 255, 0.7);
+      }
+
+      .contact-form button[type="submit"] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 8px;
+        color: var(--muted);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+        letter-spacing: 0.22em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease,
+          border-color 0.2s ease;
+          background: transparent;
+      }
+
+      .contact-form button[type="submit"]:hover {
+        border-color: #fff;
+        color: #fff;
+      }
+
+      @media (max-width: 640px) {
+        header {
+          align-items: center;
+          gap: 16px;
+          padding: 26px 28px;
+        }
+
+        header a {
+          margin: 1rem;
+          font-size: 14px;
+          letter-spacing: 0.22em;
+          line-height: 1.2;
+        }
+
+        header a:first-child {
+          max-width: 190px;
+        }
+
+        .contact-section {
+          min-height: 100svh;
+          padding: 104px 16px 40px;
+          place-items: center;
+        }
+
+        .contact-form {
+          gap: 14px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+          font-size: 16px;
+          padding: 14px;
+        }
+
+        .contact-form textarea {
+          min-height: 180px;
+        }
+
+        .contact-form button {
+          justify-self: stretch;
+          width: 100%;
+          min-height: 52px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        header {
+          padding-inline: 28px;
+        }
+
+        header a {
+          font-size: 14px;
+          letter-spacing: 0.22em;
+        }
+
+        header a:first-child {
+          max-width: 160px;
+        }
+
+        .contact-section {
+          padding-inline: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="index.html">Mariel Whitney Portfolio</a>
+      <a href="about2.0.html">About</a>
+    </header>
+
+    <main class="contact-section" aria-label="Contact">
+      <form action="https://formspree.io/f/xpqkoarg" method="POST" class="contact-form">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your name"
+          required
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email"
+          required
+        />
+
+        <input
+          type="business"
+          name="business"
+          placeholder="Your business name - optional"
+        />
+
+        <textarea
+          name="message"
+          placeholder="Tell me about your project..."
+          required
+        ></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </main>
+  </body>
+</html>
