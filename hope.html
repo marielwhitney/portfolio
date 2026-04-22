@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,15 +6,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-    <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap"
       rel="stylesheet"
     />
-
-    <title>Font Playground — Portfolio</title>
+    <title>Hope College — Portfolio</title>
     <style>
       :root {
         --bg: #fff;
@@ -38,10 +33,10 @@
         color: var(--fg);
         font-family: "Cormorant Garamond", serif;
         overflow-x: hidden;
-        overflow-y: auto; /* IMPORTANT: we need scroll */
+        overflow-y: auto; 
       }
 
-      /* --- BACKGROUND --- */
+      
       .bg {
         position: fixed;
         inset: 0;
@@ -66,7 +61,7 @@
         opacity: 1;
       }
 
-      /* optional: faint wash so text stays readable */
+      
       .bg::after {
         content: "";
         position: absolute;
@@ -97,7 +92,7 @@
         z-index: 5;
       }
 
-      /* --- LAYOUT --- */
+      
       .wrap {
         position: relative;
         z-index: 6;
@@ -119,7 +114,7 @@
         pointer-events: auto;
         text-decoration: none;
         color: var(--muted);
-        font-size: 12px;
+        font-size: 14px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
         margin: 1rem;
@@ -128,9 +123,13 @@
         color: var(--accent);
       }
 
-      /* --- SCROLL ZOOM SCENE --- */
+      header a:first-child {
+        max-width: 190px;
+      }
+
+      
       .scene {
-        /* gives us scroll distance */
+        
         height: 220vh;
         display: block;
       }
@@ -141,7 +140,7 @@
         height: 100vh;
         display: grid;
         place-items: center;
-        padding: 120px 24px 120px; /* room for header + brand etc. */
+        padding: 120px 24px 120px; 
       }
 
       .scene__content {
@@ -157,7 +156,7 @@
         font-weight: 600;
         letter-spacing: 0.02em;
         line-height: 0.95;
-        font-size: clamp(56px, 9vw, 140px); /* BIG like “Think BIG” */
+        font-size: clamp(56px, 9vw, 140px); 
       }
 
       .scene__subtitle {
@@ -168,11 +167,11 @@
         text-transform: uppercase;
       }
 
-      /* Scroll-zoom section */
+      
       .zoom-section {
         position: relative;
         height: 200vh;
-        background: transparent; /* was #fff */
+        background: transparent; 
       }
 
       .zoom-sticky {
@@ -182,7 +181,7 @@
         display: grid;
         place-items: center;
         overflow: hidden;
-        background: transparent; /* was #fff */
+        background: transparent; 
       }
       .zoom-title {
         -webkit-text-stroke: 0.01px transparent;
@@ -191,7 +190,7 @@
       .zoom-bg {
         position: absolute;
         inset: 0;
-        background: url("fp-ss.png") center/cover no-repeat;
+        background: url("hope.jpg") center/cover no-repeat;
         opacity: var(--bgAlpha, 0);
         transform: scale(var(--bgScale, 1.05));
         will-change: opacity, transform;
@@ -216,17 +215,17 @@
         background: #fff;
       }
 
-      /* Shared “image in text” style */
+      
       .zoom-word {
         color: transparent;
-        background-image: url("fp-ss.png");
+        background-image: url("hope.jpg");
         background-size: cover;
         background-position: center;
         -webkit-background-clip: text;
         background-clip: text;
       }
 
-      /* Stage A: word zoom */
+      
       .zoom-word {
         position: relative;
         z-index: 2;
@@ -240,12 +239,12 @@
         will-change: transform, opacity;
       }
 
-      /* Optional: keep edges crisp */
+      
       .zoom-word {
         -webkit-text-stroke: 0.01px transparent;
       }
 
-      /* Next section */
+      
       .info-section {
         min-height: auto;
         padding: 120px 28px 60px;
@@ -254,9 +253,7 @@
       .info-inner {
         max-width: 980px;
         margin: 0 auto;
-        /* display: grid;
-        grid-template-columns: minmax(200px, 260px) 1fr;
-        gap: 40px; */
+        
         align-items: start;
       }
 
@@ -268,7 +265,6 @@
         font-family: "Cormorant Garamond", serif;
         grid-column: 2;
       }
-
 
       a {
         text-decoration: none;
@@ -306,16 +302,16 @@
         display: grid;
         gap: 18px;
       }
+      .info-copy a {
+        text-decoration: underline;
+      }
 
       .info-copy p {
         margin: 0;
         color: rgba(17, 17, 17, 0.8);
         line-height: 1.8;
       }
-
-      .info-copy a {
-        text-decoration: underline;
-      }
+      
       .bg-wash-off .bg::after {
         background: transparent;
       }
@@ -352,7 +348,7 @@
         gap: 18px;
         width: max-content;
         padding: 0 18px;
-        animation: tickerMove 26s linear infinite; /* speed */
+        animation: tickerMove 26s linear infinite; 
         will-change: transform;
       }
 
@@ -371,9 +367,7 @@
         text-transform: uppercase;
         white-space: nowrap;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        transition:
-          transform 160ms ease,
-          background 160ms ease;
+        transition: transform 160ms ease, background 160ms ease;
       }
 
       .ticker__item:hover {
@@ -381,7 +375,7 @@
         background: rgba(255, 255, 255, 0.12);
       }
 
-      /* Seamless: move by half the track (because we duplicated items) */
+      
       @keyframes tickerMove {
         from {
           transform: translateX(0);
@@ -417,9 +411,7 @@
         background-size: cover;
         background-position: center;
         filter: grayscale(1) contrast(1.05);
-        transition:
-          filter 300ms ease,
-          transform 300ms ease;
+        transition: filter 300ms ease, transform 300ms ease;
       }
 
       .project-carousel .project:hover {
@@ -463,7 +455,7 @@
           transform: translateX(-50%);
         }
       }
-      /* Respect reduced motion */
+      
       @media (prefers-reduced-motion: reduce) {
         .ticker__track {
           animation: none;
@@ -472,7 +464,7 @@
 
       @media (max-width: 640px) {
         header {
-          padding: 18px 16px;
+          padding: 26px 28px;
         }
         .scene {
           height: 200vh;
@@ -500,7 +492,7 @@
           grid-column: 1;
         }
 
-        .zoom-word {
+         .zoom-word{
           font-size: clamp(75px, 15vw, 250px);
         }
       }
@@ -508,7 +500,7 @@
   </head>
 
   <body>
-    <!-- Background layers -->
+    
     <div class="bg" aria-hidden="true">
       <div class="bg-layer is-visible" id="bgA"></div>
       <div class="bg-layer" id="bgB"></div>
@@ -523,51 +515,56 @@
       </header>
       <section class="zoom-section" id="zoom">
         <div class="zoom-sticky">
-          <!-- full image reveal layer (behind the text) -->
+          
           <div class="zoom-bg" aria-hidden="true"></div>
 
-          <!-- Stage A: whole word -->
-          <h2 class="zoom-title zoom-word" id="zoomWord">Font Playground</h2>
+          
+          <h2 class="zoom-title zoom-word" id="zoomWord">Hope.Edu</h2>
         </div>
       </section>
 
       <section class="info-section" id="information">
         <div class="info-inner">
-          <a href="https://marielwhitney.github.io/font-playground/">
-            <h3 class="info-heading">Font Playground</h3>
-          </a>
+          <a href="https://hope.edu/">
+            <h3 class="info-heading">Hope College Website</h3></a
+          >
           <hr class="info-rule" />
           <div class="info-grid">
-            <p class="info-lede">Personal Project </p>
+            <p class="info-lede">Web Assistant</p>
             <div class="info-copy">
               <p>
-                I created <a href="https://marielwhitney.github.io/font-playground/">Font Playground</a> as an interactive web project that
-                lets users experiment with typography and color combinations in
-                real time. The goal was to design a playful, hands-on space
-                where people can explore fonts visually rather than just viewing
-                static examples, making the experience both creative and
-                engaging.
+                I partnered with teams across Hope College to support multiple
+                website updates, focusing on improving usability, navigation,
+                and visual clarity across institutional digital platforms.
               </p>
               <p>
-                Built for my ART-105 course, this project focuses on usability
-                and interaction, allowing users to easily test different type
-                styles, adjust visual pairings, and discover combinations that
-                work well together. It emphasizes intuitive controls, immediate
-                feedback, and a clean layout so the interface feels simple,
-                responsive, and fun to use.
+                Working closely with the Boerigter team at Hope College, I
+                helped modernize the <a href="https://hope.edu/offices/boerigter-center/">Boerigter Center</a> website by revising
+                layouts, updating program information, and improving navigation
+                through Modern Campus. This project emphasized clean design and
+                an intuitive content management experience for both visitors and
+                internal staff.
               </p>
               <p>
-                Through this project, I explored front-end development and
-                design principles while combining creativity with functionality.
-                Font Playground highlights my interest in interactive design,
-                user experience, and building digital tools that inspire
-                experimentation, creativity, and visual exploration.
+                I also collaborated with Hope College’s Center for Leadership to
+                design and build the website for <a href="https://hope.edu/academics/center-leadership/">Lead with Hope</a>, an immersive
+                leadership retreat for emerging and established leaders. The
+                site was designed with a strong focus on user experience,
+                ensuring clarity, engagement, and alignment with the retreat’s
+                core values.
+              </p>
+              <p>
+                In addition to these projects, I contributed to ongoing
+                adjustments across the broader <a href="https://hope.edu/">Hope College</a> website, gaining
+                experience working within a large, structured CMS while
+                balancing brand consistency, accessibility, and user-centered
+                design.
               </p>
             </div>
           </div>
         </div>
       </section>
-      <section class="project-carousel">
+     <section class="project-carousel">
         <div class="carousel-track project-list">
           <a class="project" href="magazine.html" data-bg="magazine.png">
             <p class="project-title">Magazine</p>
@@ -597,8 +594,12 @@
             <p class="project-title">Font Playground</p>
           </a>
 
-           <a class="project" href="haworth.html" data-bg="haworth-hotel.png">
+          <a class="project" href="haworth.html" data-bg="haworth-hotel.png">
             <p class="project-title">Haworth Hotel</p>
+          </a>
+
+          <a class="project" href="anchor.html" data-bg="anchor-hp.png">
+            <p class="project-title">The Anchor</p>
           </a>
 
           <a
@@ -609,7 +610,7 @@
             <p class="project-title">Statistics</p>
           </a>
 
-          <!-- DUPLICATE FOR SEAMLESS LOOP -->
+          
           <a class="project" href="magazine.html" data-bg="magazine.png">
             <p class="project-title">Magazine</p>
           </a>
