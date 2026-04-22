@@ -33,10 +33,10 @@
         color: var(--fg);
         font-family: "Cormorant Garamond", serif;
         overflow-x: hidden;
-        overflow-y: auto; /* IMPORTANT: we need scroll */
+        overflow-y: auto; 
       }
 
-      /* --- BACKGROUND --- */
+      
       .bg {
         position: fixed;
         inset: 0;
@@ -61,7 +61,7 @@
         opacity: 1;
       }
 
-      /* optional: faint wash so text stays readable */
+      
       .bg::after {
         content: "";
         position: absolute;
@@ -92,7 +92,7 @@
         z-index: 5;
       }
 
-      /* --- LAYOUT --- */
+      
       .wrap {
         position: relative;
         z-index: 6;
@@ -114,7 +114,7 @@
         pointer-events: auto;
         text-decoration: none;
         color: var(--muted);
-        font-size: 12px;
+        font-size: 14px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
         margin: 1rem;
@@ -123,9 +123,13 @@
         color: var(--accent);
       }
 
-      /* --- SCROLL ZOOM SCENE --- */
+      header a:first-child {
+        max-width: 190px;
+      }
+
+      
       .scene {
-        /* gives us scroll distance */
+        
         height: 220vh;
         display: block;
       }
@@ -136,7 +140,7 @@
         height: 100vh;
         display: grid;
         place-items: center;
-        padding: 120px 24px 120px; /* room for header + brand etc. */
+        padding: 120px 24px 120px; 
       }
 
       .scene__content {
@@ -152,7 +156,7 @@
         font-weight: 600;
         letter-spacing: 0.02em;
         line-height: 0.95;
-        font-size: clamp(56px, 9vw, 140px); /* BIG like “Think BIG” */
+        font-size: clamp(56px, 9vw, 140px); 
       }
 
       .scene__subtitle {
@@ -163,11 +167,11 @@
         text-transform: uppercase;
       }
 
-      /* Scroll-zoom section */
+      
       .zoom-section {
         position: relative;
         height: 200vh;
-        background: transparent; /* was #fff */
+        background: transparent; 
       }
 
       .zoom-sticky {
@@ -177,7 +181,7 @@
         display: grid;
         place-items: center;
         overflow: hidden;
-        background: transparent; /* was #fff */
+        background: transparent; 
       }
       .zoom-title {
         -webkit-text-stroke: 0.01px transparent;
@@ -211,7 +215,7 @@
         background: #fff;
       }
 
-      /* Shared “image in text” style */
+      
       .zoom-word {
         color: transparent;
         background-image: url("haworth-hotel.png");
@@ -221,7 +225,7 @@
         background-clip: text;
       }
 
-      /* Stage A: word zoom */
+      
       .zoom-word {
         position: relative;
         z-index: 2;
@@ -235,12 +239,12 @@
         will-change: transform, opacity;
       }
 
-      /* Optional: keep edges crisp */
+      
       .zoom-word {
         -webkit-text-stroke: 0.01px transparent;
       }
 
-      /* Next section */
+      
       .info-section {
         min-height: auto;
         padding: 120px 28px 60px;
@@ -249,9 +253,7 @@
       .info-inner {
         max-width: 980px;
         margin: 0 auto;
-        /* display: grid;
-        grid-template-columns: minmax(200px, 260px) 1fr;
-        gap: 40px; */
+        
         align-items: start;
       }
 
@@ -309,7 +311,7 @@
       .info-copy a {
         text-decoration: underline;
       }
-      /* If you want the image to “take over” as you zoom in, we fade the wash */
+      
       .bg-wash-off .bg::after {
         background: transparent;
       }
@@ -346,7 +348,7 @@
         gap: 18px;
         width: max-content;
         padding: 0 18px;
-        animation: tickerMove 26s linear infinite; /* speed */
+        animation: tickerMove 26s linear infinite; 
         will-change: transform;
       }
 
@@ -373,7 +375,7 @@
         background: rgba(255, 255, 255, 0.12);
       }
 
-      /* Seamless: move by half the track (because we duplicated items) */
+      
       @keyframes tickerMove {
         from {
           transform: translateX(0);
@@ -453,7 +455,7 @@
           transform: translateX(-50%);
         }
       }
-      /* Respect reduced motion */
+      
       @media (prefers-reduced-motion: reduce) {
         .ticker__track {
           animation: none;
@@ -462,7 +464,7 @@
 
       @media (max-width: 640px) {
         header {
-          padding: 18px 16px;
+          padding: 26px 28px;
         }
         .scene {
           height: 200vh;
@@ -506,7 +508,7 @@
   </head>
 
   <body>
-    <!-- Background layers -->
+    
     <div class="bg" aria-hidden="true">
       <div class="bg-layer is-visible" id="bgA"></div>
       <div class="bg-layer" id="bgB"></div>
@@ -521,10 +523,10 @@
       </header>
       <section class="zoom-section" id="zoom">
         <div class="zoom-sticky">
-          <!-- full image reveal layer (behind the text) -->
+          
           <div class="zoom-bg" aria-hidden="true"></div>
 
-          <!-- Stage A: whole word -->
+          
           <h2 class="zoom-title zoom-word" id="zoomWord">Haworth Hotel</h2>
         </div>
       </section>
@@ -606,6 +608,10 @@
             <p class="project-title">Haworth Hotel</p>
           </a>
 
+          <a class="project" href="anchor.html" data-bg="anchor-hp.png">
+            <p class="project-title">The Anchor</p>
+          </a>
+
           <a
             class="project"
             href="stats.html"
@@ -614,7 +620,7 @@
             <p class="project-title">Statistics</p>
           </a>
 
-          <!-- DUPLICATE FOR SEAMLESS LOOP -->
+          
           <a class="project" href="magazine.html" data-bg="magazine.png">
             <p class="project-title">Magazine</p>
           </a>
