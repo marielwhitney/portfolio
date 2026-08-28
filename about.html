@@ -29,28 +29,24 @@
       src="https://kit.fontawesome.com/YOUR_KIT_ID.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="styles.css" />
     <title>About — Mariel Whitney</title>
-
     <style>
       :root {
         --fg: #fff;
         --muted: rgba(255, 255, 255, 0.75);
       }
-
       * {
         box-sizing: border-box;
       }
-
       html,
       body {
         height: 100%;
       }
-
       body {
         margin: 0;
         background: #000;
       }
-
       .cover {
         position: relative;
         height: 100vh;
@@ -58,7 +54,6 @@
         color: var(--fg);
         font-family: "Cormorant Garamond", serif;
       }
-
       .cover__bg {
         position: absolute;
         inset: 0;
@@ -69,7 +64,6 @@
         transform-origin: center;
         will-change: transform;
       }
-
       .cover__fade {
         position: absolute;
         inset: 0;
@@ -82,7 +76,6 @@
         );
         pointer-events: none;
       }
-
       .cover__vignette {
         position: absolute;
         inset: 0;
@@ -93,37 +86,6 @@
         );
         pointer-events: none;
       }
-
-      header {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        padding: 26px 28px;
-        display: flex;
-        justify-content: space-between;
-        z-index: 7;
-        pointer-events: none;
-      }
-
-      header a {
-        pointer-events: auto;
-        text-decoration: none;
-        color: var(--muted);
-        font-size: 14px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        margin: 1rem;
-      }
-
-      header a:hover {
-        color: var(--accent);
-      }
-
-      header a:first-child {
-        max-width: 190px;
-      }
-
       .marquee {
         position: absolute;
         left: 0;
@@ -133,7 +95,6 @@
         overflow: hidden;
         padding: 10px 0 0;
       }
-
       .marquee__track {
         display: flex;
         width: max-content;
@@ -141,7 +102,6 @@
         animation: marqueeMove 120s linear infinite;
         will-change: transform;
       }
-
       .marquee__word {
         font-weight: 700;
         text-transform: uppercase;
@@ -152,17 +112,14 @@
         color: #fff;
         text-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
       }
-
       @keyframes marqueeMove {
         from {
           transform: translateX(0);
         }
-
       to {
           transform: translateX(-50%);
         }
       }
-
       @keyframes coverBreath {
         0% {
           transform: scale(1);
@@ -174,50 +131,38 @@
           transform: scale(1);
         }
       }
-
       @media (max-width: 640px) {
-        .header a {
-          margin: 12px;
-        }
-
       .marquee__word {
           font-size: 120px;
         }
-
       .nav {
           padding: 18px 16px;
         }
-
       .nav__right {
           gap: 14px;
         }
-
       .marquee {
           bottom: 12px;
         }
-
       .cover__bg {
           background-position: 40%;
         }
       }
 
-      .project-carousel {
-        padding: 0;
+      .project-carousel{
+        background-color: #fff;
       }
     </style>
   </head>
-
   <body>
     <section class="cover" aria-label="About cover">
       <div class="cover__bg" aria-hidden="true"></div>
       <div class="cover__fade" aria-hidden="true"></div>
       <div class="cover__vignette" aria-hidden="true"></div>
-
       <header>
         <a href="index.html">Mariel Whitney Portfolio</a>
         <a href="form.html">Contact</a>
       </header>
-
       <div class="marquee" aria-hidden="true">
         <div class="marquee__track">
           <div class="marquee__word">Mariel Whitney</div>
@@ -231,7 +176,6 @@
         </div>
       </div>
     </section>
-
     <style>
       .intro {
         min-height: 100vh;
@@ -243,7 +187,6 @@
         position: relative;
         overflow: hidden;
       }
-
       .intro::before {
         content: "";
         position: absolute;
@@ -263,7 +206,6 @@
         opacity: 0.35;
         pointer-events: none;
       }
-
       .intro::after {
         content: "";
         position: absolute;
@@ -275,12 +217,10 @@
         );
         pointer-events: none;
       }
-
       .intro__inner {
         position: relative;
         z-index: 1;
       }
-
       .intro__title {
         margin: 5rem;
         font-family: "Cormorant Garamond", serif;
@@ -292,7 +232,6 @@
         position: relative;
         font-size: 150px;
       }
-
       .intro__title::before {
         content: "My name is Mariel, with me you can…";
         position: absolute;
@@ -304,22 +243,17 @@
         opacity: 0.55;
         pointer-events: none;
       }
-
       .name-shift {
         display: inline-block;
         font-weight: 700;
-
         background: linear-gradient(90deg, #000, #777, #fff, #777, #000);
         background-size: 400% 100%;
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-
         -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
-
         animation: nameShift 12s ease-in-out infinite;
       }
-
       @keyframes nameShift {
         0% {
           background-position: 0% 50%;
@@ -331,26 +265,19 @@
           background-position: 0% 50%;
         }
       }
-
       @media (max-width: 640px) {
         .intro__title::before {
           transform: translate(6px, 8px);
         }
       }
-
       @media (max-width: 760px) {
         .intro {
           padding: 84px 18px 28px;
         }
-
       .intro__title {
           margin: 0;
           font-size: 7rem;
           letter-spacing: 0.04em;
-        }
-
-      header a {
-          margin: 10px 2px;
         }
       }
     </style>
@@ -363,7 +290,6 @@
         </h2>
       </div>
     </section>
-
     <style>
       .about {
         background: #000;
@@ -371,7 +297,6 @@
         padding: 0 16px 80px;
         overflow-x: hidden;
       }
-
       .about-nav {
         position: sticky;
         top: 0;
@@ -386,11 +311,9 @@
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
       }
-
       .about-nav::-webkit-scrollbar {
         display: none;
       }
-
       .about-nav__item {
         background: none;
         border: none;
@@ -402,17 +325,14 @@
         transition: all 0.25s ease;
         flex: 0 0 auto;
       }
-
       .about-nav__item.is-active {
         color: white;
         border-bottom: 1px solid white;
       }
-
       .about-header {
         text-align: center;
         padding: 20px 0 0;
       }
-
       #browserTitle {
         font-size: 40px;
         margin: 0px;
@@ -420,16 +340,13 @@
         letter-spacing: 0.02em;
         font-family: "Cormorant Garamond", serif;
       }
-
       #browserDesc {
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 16px;
         color: rgba(255, 255, 255, 0.7);
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.5;
       }
-
       .about-browser {
         width: 100%;
         max-width: 800px;
@@ -438,7 +355,6 @@
         overflow: hidden;
         background: #eaeaea;
       }
-
       .about-browser__top {
         display: flex;
         align-items: center;
@@ -446,31 +362,25 @@
         padding: 10px;
         background: #ddd;
       }
-
       .about-browser__dots {
         display: flex;
         gap: 6px;
         flex: 0 0 auto;
       }
-
       .about-browser__dots span {
         width: 10px;
         height: 10px;
         border-radius: 50%;
       }
-
       .about-browser__dots span:nth-child(1) {
         background: #ff5f57;
       }
-
       .about-browser__dots span:nth-child(2) {
         background: #ffbd2e;
       }
-
       .about-browser__dots span:nth-child(3) {
         background: #28c840;
       }
-
       .about-browser__url {
         flex: 1;
         min-width: 0;
@@ -483,7 +393,6 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-
       .about-browser__page {
         background: #fff;
         min-height: 400px;
@@ -491,19 +400,15 @@
         .about-nav {
           gap: 28px;
         }
-
       .about-nav__item {
           font-size: 40px;
         }
-
       #browserTitle {
           font-size: 34px;
         }
-
       #browserDesc {
           font-size: 15px;
         }
-
       .about-browser__page {
           min-height: 320px;
         }
@@ -511,65 +416,53 @@
         .about {
           padding: 0 12px 56px;
         }
-
       .about-nav {
           justify-content: flex-start;
           gap: 20px;
           padding: 16px 4px;
         }
-
       .about-nav__item {
           font-size: 28px;
         }
-
       .about-header {
           padding-top: 24px;
         }
-
       #browserTitle {
           font-size: 28px;
           line-height: 1.1;
           margin-bottom: 8px;
         }
-
       #browserDesc {
           font-size: 14px;
           max-width: 380px;
           margin: 0 auto;
         }
-
       .about-browser {
           margin-top: 28px;
           border-radius: 12px;
         }
-
       .about-browser__top {
           gap: 8px;
           padding: 8px;
         }
-
       .about-browser__dots span {
           width: 8px;
           height: 8px;
         }
-
       .about-browser__url {
           font-size: 11px;
           padding: 4px 6px;
         }
-
       .about-browser__page {
           min-height: 220px;
         }
       }
-
       .about-inputWrap {
         margin-top: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
       }
-
       .about-input {
         width: 260px;
         background: transparent;
@@ -581,29 +474,24 @@
         color: white;
         outline: none;
       }
-
       .about-input::placeholder {
         color: rgba(255, 255, 255, 0.4);
       }
-
       .about-count {
         font-size: 12px;
         color: rgba(255, 255, 255, 0.5);
         margin-top: 6px;
       }
-
       .about-browser__page {
         background: #fff;
         min-height: 400px;
         padding: 28px;
         position: relative;
         overflow: hidden;
-
         display: flex;
         align-items: center;
         justify-content: center;
       }
-
       .about-browser__previewLine {
         display: flex;
         align-items: center;
@@ -618,20 +506,17 @@
           transform 0.24s ease;
         will-change: transform;
       }
-
       .about-browser__page.effect-zoom .about-browser__previewLine:hover,
       .about-browser__page.effect-zoom .about-browser__previewLine:active,
       .about-browser__page.effect-zoom .about-browser__previewLine.is-touching {
         transform: scale(1.08);
       }
-
       .about-browser__page.effect-glitch .about-browser__previewLine:hover,
       .about-browser__page.effect-glitch .about-browser__previewLine:active,
       .about-browser__page.effect-glitch .about-browser__previewLine.is-touching {
         animation: aboutGlitch 0.45s steps(2, end) infinite;
         filter: contrast(1.18);
       }
-
       .about-browser__page.effect-glitch .about-browser__previewLine:hover .about-browser__centerText,
       .about-browser__page.effect-glitch .about-browser__previewLine:hover .about-browser__icon,
       .about-browser__page.effect-glitch .about-browser__previewLine:active .about-browser__centerText,
@@ -642,11 +527,9 @@
           2px 0 rgba(255, 0, 90, 0.55),
           -2px 0 rgba(0, 170, 255, 0.55);
       }
-
       .about-browser__page.effect-trail {
         touch-action: none;
       }
-
       .cursor-trail-dot {
         position: absolute;
         width: 10px;
@@ -658,7 +541,6 @@
         animation: trailFade 0.65s ease-out forwards;
         z-index: 0;
       }
-
       @keyframes aboutGlitch {
         0% {
           transform: translate(0, 0) skewX(0deg);
@@ -676,19 +558,16 @@
           transform: translate(0, 0) skewX(0deg);
         }
       }
-
       @keyframes trailFade {
         from {
           opacity: 0.75;
           transform: translate(-50%, -50%) scale(1);
         }
-
       to {
           opacity: 0;
           transform: translate(-50%, -50%) scale(2.8);
         }
       }
-
       .about-browser__icon {
         --icon-scale: 1;
         color: rgb(211, 211, 211);
@@ -697,19 +576,15 @@
         font-size: calc(32px * var(--icon-scale));
         line-height: 1;
       }
-
       .about-browser__page.show-icon .about-browser__icon {
         display: inline-block;
       }
-
       .about-browser__page.launch-mode {
         padding: 0;
       }
-
       .about-browser__page.launch-mode > .about-browser__previewLine {
         display: none;
       }
-
       .launch-compare {
         --split: 50%;
         position: absolute;
@@ -720,11 +595,9 @@
         user-select: none;
         background: #fff;
       }
-
       .about-browser__page.launch-mode .launch-compare {
         display: block;
       }
-
       .launch-compare__pane {
         position: absolute;
         inset: 0;
@@ -733,20 +606,17 @@
         justify-content: center;
         padding: 28px;
       }
-
       .launch-compare__before {
         font-family: "Cormorant Garamond", serif;
         font-weight: 500;
         font-style: normal;
         color: #000;
       }
-
       .launch-compare__after {
         clip-path: inset(0 0 0 var(--split));
         overflow: hidden;
         background: var(--launch-after-bg, #fff);
       }
-
       .launch-compare__afterInner {
         position: absolute;
         inset: 0;
@@ -756,7 +626,6 @@
         gap: 14px;
         padding: 28px;
       }
-
       .launch-compare__beforeText {
         margin: 0;
         font-size: clamp(18px, 2vw, 22px);
@@ -765,7 +634,6 @@
         text-transform: lowercase;
         --text-scale: 1;
       }
-
       .launch-compare__handle {
         position: absolute;
         top: 0;
@@ -777,7 +645,6 @@
         transform: translateX(-50%);
         pointer-events: none;
       }
-
       .launch-compare__handle::before {
         content: "";
         position: absolute;
@@ -790,20 +657,17 @@
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
         transform: translate(-50%, -50%);
       }
-
       .launch-compare__handle::after {
         content: "< >";
         position: absolute;
         left: 50%;
         top: 50%;
         color: #fff;
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 13px;
         letter-spacing: 0.04em;
         line-height: 1;
         transform: translate(-50%, -56%);
       }
-
       .launch-compare__range {
         position: absolute;
         inset: 0;
@@ -813,7 +677,6 @@
         opacity: 0;
         cursor: ew-resize;
       }
-
       .about-browser__centerText {
         max-width: 100%;
         min-width: 0;
@@ -827,11 +690,9 @@
         text-align: center;
         margin: 0;
       }
-
       .about-browser__centerText.canvas-item {
         font-size: calc(clamp(16px, 1.6vw, 22px) * var(--text-scale));
       }
-
       .launch-cta {
         display: none;
         width: 100%;
@@ -839,11 +700,9 @@
         margin: 28px auto 0;
         text-align: center;
       }
-
       .launch-cta.is-visible {
         display: block;
       }
-
       .launch-cta__text {
         margin: 0 0 18px;
         animation: nameShift 12s ease-in-out infinite;
@@ -857,7 +716,6 @@
         font-weight: 500;
         line-height: 1;
       }
-
       .launch-cta__button {
         display: inline-flex;
         align-items: center;
@@ -875,35 +733,27 @@
           background 0.2s ease,
           color 0.2s ease,
           border-color 0.2s ease;
-          
       }
-
       .launch-cta__button:hover {
         border-color: #fff;
         color: #fff;
       }
-
       h1.about-browser__centerText.canvas-item {
         font-size: calc(clamp(40px, 5vw, 70px) * var(--text-scale));
       }
-
       h2.about-browser__centerText.canvas-item {
         font-size: calc(clamp(32px, 4vw, 56px) * var(--text-scale));
       }
-
       h3.about-browser__centerText.canvas-item {
         font-size: calc(clamp(26px, 3vw, 42px) * var(--text-scale));
       }
-
       h4.about-browser__centerText.canvas-item {
         font-size: calc(clamp(22px, 2.4vw, 32px) * var(--text-scale));
       }
-
       p.about-browser__centerText.canvas-item {
         font-size: calc(clamp(16px, 1.6vw, 22px) * var(--text-scale));
         line-height: 1.25;
       }
-
       #assembleCustomizer,
       #refineCustomizer,
       #integrateCustomizer,
@@ -911,13 +761,11 @@
         margin-top: 10px;
         width: 100%;
       }
-
       .customizer-dock {
         width: 100%;
         max-width: 800px;
         margin: 0 auto;
       }
-
       .mobile-customizer-tabs {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -927,13 +775,11 @@
         background: #0f1115;
         margin-bottom: 10px;
       }
-
       .mobile-customizer-tab {
         appearance: none;
         border: 0;
         background: transparent;
         color: rgba(255, 255, 255, 0.8);
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 16px;
         padding: 12px;
         border-radius: 12px;
@@ -942,29 +788,23 @@
           background 0.2s ease,
           color 0.2s ease;
       }
-
       .mobile-customizer-tab.active {
         background: rgba(255, 255, 255, 0.06);
       }
-
       .color-customizer,
       .font-customizer {
         display: none;
       }
-
       .color-customizer.active-mobile,
       .font-customizer.active-mobile {
         display: block;
       }
-
       .refine-panel {
         display: none;
       }
-
       .refine-panel.active-mobile {
         display: block;
       }
-
       .customizer-shell {
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 10px;
@@ -972,27 +812,22 @@
         padding: 16px 16px 14px;
         backdrop-filter: blur(12px);
       }
-
       .slider-group {
         margin-bottom: 18px;
       }
-
       .slider-label {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-bottom: 10px;
         color: rgba(255, 255, 255, 0.7);
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 16px;
         font-weight: 400;
       }
-
       .slider-label .value {
         font-weight: 400;
         opacity: 0.75;
       }
-
       .slider {
         -webkit-appearance: none;
         appearance: none;
@@ -1002,7 +837,6 @@
         background: rgba(255, 255, 255, 0.15);
         outline: none;
       }
-
       .slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
@@ -1014,7 +848,6 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
         cursor: pointer;
       }
-
       .slider::-moz-range-thumb {
         width: 14px;
         height: 14px;
@@ -1024,34 +857,28 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
         cursor: pointer;
       }
-
       .slider::-moz-range-track {
         height: 8px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.15);
       }
-
       #rgb-r,
       #font-rgb-r {
         background: linear-gradient(to right, #000, #ff3b30);
       }
-
       #rgb-g,
       #font-rgb-g {
         background: linear-gradient(to right, #000, #34c759);
       }
-
       #rgb-b,
       #font-rgb-b {
         background: linear-gradient(to right, #000, #0a84ff);
       }
-
       #bg-lightness,
       #font-lightness,
       #icon-size {
         background: linear-gradient(to right, #000, #fff);
       }
-
       .customizer-reset {
             margin-top: 8px;
     width: 100%;
@@ -1059,16 +886,13 @@
     border-radius: 14px;
     border: none;
     background: transparent;
-    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
     cursor: pointer;
       }
-
       .customizer-reset:hover {
         background: rgba(255, 255, 255, 0.08);
       }
-
       .button-column,
       .font-option-grid,
       .icon-option-grid,
@@ -1076,24 +900,19 @@
         display: grid;
         gap: 10px;
       }
-
       .button-column {
         grid-template-columns: repeat(5, minmax(0, 1fr));
       }
-
       .font-option-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
-
       .icon-option-grid {
         grid-template-columns: repeat(5, minmax(0, 1fr));
         margin-bottom: 0px;
       }
-
       .visual-option-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
-
       .text-style-button,
       .font-option-button,
       .icon-option-button,
@@ -1102,7 +921,6 @@
         border: 1px solid rgba(255, 255, 255, 0.12);
         background: rgba(255, 255, 255, 0.04);
         color: rgba(255, 255, 255, 0.82);
-        font-family: "Plus Jakarta Sans", sans-serif;
         border-radius: 10px;
         cursor: pointer;
         transition:
@@ -1110,39 +928,32 @@
           background 0.2s ease,
           color 0.2s ease;
       }
-
       .text-style-button {
         min-height: 48px;
         font-size: 16px;
       }
-
       .font-option-button {
         min-height: 58px;
         padding: 10px 8px;
         font-size: 15px;
         line-height: 1;
       }
-
       .icon-option-button {
         min-height: 52px;
         font-size: 20px;
       }
-
       .icon-option-button i {
         color: rgb(211, 211, 211);
         pointer-events: none;
       }
-
       .visual-option-button {
         min-height: 52px;
         padding: 10px;
         font-size: 13px;
       }
-
       .visual-option-button[data-visual-effect="none"] {
         font-size: 22px;
       }
-
       .text-style-button.active,
       .font-option-button.active,
       .icon-option-button.active,
@@ -1154,12 +965,9 @@
         .customizer-shell {
           padding: 12px 18px;
         }
-
       .mobile-customizer-tab {
           font-size: 16px;
         }
-
-       
       }      @media (max-width: 780px) {
         #assembleCustomizer,
         #refineCustomizer,
@@ -1167,205 +975,163 @@
         #establishCustomizer {
           margin-top: 20px;
         }
-
       .mobile-customizer-tabs {
           padding: 8px;
           border-radius: 16px;
           gap: 10px;
           margin-bottom: 16px;
         }
-
       .mobile-customizer-tab {
           font-size: 15px;
           padding: 14px 10px;
           border-radius: 12px;
         }
-
       .customizer-shell {
           padding: 18px 16px 14px;
           border-radius: 16px;
         }
-
       .slider-group {
           margin-bottom: 18px;
         }
-
       .slider-label {
           font-size: 15px;
           margin-bottom: 12px;
         }
-
       .slider {
           height: 12px;
         }
-
       .slider::-webkit-slider-thumb {
           width: 20px;
           height: 20px;
         }
-
       .slider::-moz-range-thumb {
           width: 20px;
           height: 20px;
         }
-
       .font-option-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-
       .icon-option-grid {
           grid-template-columns: repeat(4, minmax(0, 1fr));
         }
-
       .visual-option-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
-
       @media (max-width: 640px) {
         .about {
           padding: 0 14px 52px;
         }
-
       .about-nav {
           margin: 0 -14px;
           padding: 14px 14px;
           gap: 18px;
           scroll-padding-inline: 14px;
         }
-
       .about-nav__item {
           font-size: 26px;
           line-height: 1;
         }
-
       .about-header {
           padding-top: 22px;
         }
-
       #browserTitle {
           font-size: 28px;
           line-height: 1.1;
         }
-
       #browserDesc {
           width: min(100%, 380px);
           margin: 0 auto;
           font-size: 14px;
         }
-
       .about-browser {
           margin-top: 24px;
           border-radius: 10px;
         }
-
       .about-browser__page {
           min-height: 230px;
           padding: 22px 16px;
         }
-
       .about-browser__page.launch-mode {
           padding: 0;
         }
-
       .launch-compare__pane,
         .launch-compare__afterInner {
           padding: 22px 16px;
         }
-
       .launch-compare__afterInner {
           gap: 10px;
         }
-
       .launch-compare__handle::before {
           width: 38px;
           height: 38px;
         }
-
       .about-browser__previewLine {
           gap: 10px;
         }
-
       .about-browser__icon {
           font-size: calc(26px * var(--icon-scale));
         }
-
       .about-browser__centerText {
           font-size: 26px;
         }
-
       .launch-cta {
           margin-top: 24px;
         }
-
       .launch-cta__button {
           width: 100%;
           max-width: 280px;
         }
-
       .about-input {
           width: min(100%, 280px);
           font-size: 16px;
         }
-
       .customizer-dock {
           max-width: 100%;
         }
-
       .mobile-customizer-tabs {
           gap: 8px;
           padding: 8px;
         }
-
       .mobile-customizer-tab {
           min-width: 0;
           font-size: 14px;
           padding: 13px 8px;
         }
-
       .button-column {
           gap: 8px;
         }
-
       .text-style-button {
           min-height: 44px;
           font-size: 14px;
         }
-
       .visual-option-button {
           min-height: 50px;
           font-size: 12px;
           line-height: 1.15;
         }
       }
-
       @media (max-width: 380px) {
         .about-nav {
           gap: 14px;
         }
-
       .about-nav__item {
           font-size: 24px;
         }
-
       #browserTitle {
           font-size: 26px;
         }
-
       .font-option-grid {
           grid-template-columns: 1fr;
         }
-
       .icon-option-grid {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
-
       .visual-option-grid {
           grid-template-columns: 1fr;
         }
       }
     </style>
-
     <section class="about" id="about">
       <div class="about-nav">
         <button class="about-nav__item is-active" data-page="make">Make</button>
@@ -1375,14 +1141,12 @@
          <button class="about-nav__item" data-page="establish">Establish</button>
         <button class="about-nav__item" data-page="reveal">Launch</button>
       </div>
-
       <div class="about-header">
         <h2 id="browserTitle">Make it about you</h2>
         <p id="browserDesc">
           Design that starts with your goals, your audience, and your story.
         </p>
       </div>
-
       <div class="about-browser">
         <div class="about-browser__top">
           <div class="about-browser__dots">
@@ -1390,7 +1154,6 @@
           </div>
           <div class="about-browser__url">yoursite.com</div>
         </div>
-
         <div class="about-browser__page">
           <div class="about-browser__previewLine">
             <i
@@ -1426,16 +1189,13 @@
             />
           </div>
         </div>
-        
       </div>
-
       <div class="launch-cta" id="launchCta">
         <p class="launch-cta__text">Make it real.</p>
         <a class="launch-cta__button" href="form.html">
           Contact
         </a>
       </div>
-      
       <div class="about-inputWrap" id="makeInputWrap">
         <input
           id="phraseInput"
@@ -1459,7 +1219,6 @@
                 Foreground
               </button>
             </div>
-
             <section class="color-customizer active-mobile" id="bg-customizer">
               <div class="customizer-shell">
                 <div class="slider-group">
@@ -1476,7 +1235,6 @@
                     value="100"
                   />
                 </div>
-
                 <div class="slider-group">
                   <label class="slider-label" for="rgb-r">
                     <span>Red</span>
@@ -1491,7 +1249,6 @@
                     value="255"
                   />
                 </div>
-
                 <div class="slider-group">
                   <label class="slider-label" for="rgb-g">
                     <span>Green</span>
@@ -1506,7 +1263,6 @@
                     value="255"
                   />
                 </div>
-
                 <div class="slider-group">
                   <label class="slider-label" for="rgb-b">
                     <span>Blue</span>
@@ -1526,7 +1282,6 @@
                 </button>
               </div>
             </section>
-
             <section class="font-customizer" id="font-color-customizer">
               <div class="customizer-shell">
                 <div class="slider-group">
@@ -1543,7 +1298,6 @@
                     value="0"
                   />
                 </div>
-
                 <div class="slider-group">
                   <label class="slider-label" for="font-rgb-r">
                     <span>Red</span>
@@ -1606,7 +1360,6 @@
               Size
             </button>
           </div>
-
           <section class="refine-panel active-mobile" id="refine-font-panel">
             <div class="customizer-shell">
               <div class="font-option-grid" id="fontOptionGrid"></div>
@@ -1615,7 +1368,6 @@
               </button>
             </div>
           </section>
-
           <section class="refine-panel" id="refine-size-panel">
             <div class="customizer-shell">
               <div class="button-column" aria-label="Text style buttons">
@@ -1660,7 +1412,6 @@
                 value="100"
               />
             </div>
-
             <div class="icon-option-grid" id="iconOptionGrid"></div>
             <button class="customizer-reset" id="iconReset">
               Reset Icon
@@ -1706,55 +1457,44 @@
         </div>
       </div>
     </section>
-
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const navItems = document.querySelectorAll(".about-nav__item");
         const title = document.getElementById("browserTitle");
         const desc = document.getElementById("browserDesc");
-
         const inputWrap = document.getElementById("makeInputWrap");
         const assembleWrap = document.getElementById("assembleCustomizer");
         const refineWrap = document.getElementById("refineCustomizer");
         const integrateWrap = document.getElementById("integrateCustomizer");
         const establishWrap = document.getElementById("establishCustomizer");
         const launchCta = document.getElementById("launchCta");
-
         const phraseInput = document.getElementById("phraseInput");
         const phraseCount = document.getElementById("phraseCount");
         const urlBar = document.querySelector(".about-browser__url");
-
         const browserPage = document.querySelector(".about-browser__page");
         const launchCompare = document.getElementById("launchCompare");
         const launchCompareRange = document.getElementById("launchCompareRange");
         let activePageKey = "make";
         let iconHasBeenChosen = false;
-
         function getPageIcons() {
           return document.querySelectorAll(".about-browser__page .about-browser__icon");
         }
-
       function getCenterText() {
           return document.querySelector(".about-browser__centerText");
         }
-
       function getLaunchAfterText() {
           return document.querySelector(".launch-compare__afterText");
         }
-
       function getDesignTextItems() {
           return document.querySelectorAll(".about-browser__centerText");
         }
-
       function updateIconVisibility() {
           browserPage.classList.toggle("show-icon", activePageKey === "integrate" || iconHasBeenChosen);
         }
-
       function updateLaunchMode() {
           browserPage.classList.toggle("launch-mode", activePageKey === "reveal");
           launchCta.classList.toggle("is-visible", activePageKey === "reveal");
         }
-
       const pages = {
           make: {
             title: "Make it about you",
@@ -1781,19 +1521,14 @@
             desc: "Taking your ideas from concept to a refined, ready-to-use experience.",
           },
         };
-
-      
         navItems.forEach((btn) => {
           btn.addEventListener("click", () => {
             const key = btn.dataset.page;
             activePageKey = key;
-
             title.textContent = pages[key].title;
             desc.textContent = pages[key].desc;
-
             navItems.forEach((b) => b.classList.remove("is-active"));
             btn.classList.add("is-active");
-
             inputWrap.style.display = key === "make" ? "flex" : "none";
             assembleWrap.style.display = key === "assemble" ? "block" : "none";
             refineWrap.style.display = key === "refine" ? "block" : "none";
@@ -1804,75 +1539,58 @@
           });
         });        function syncPhrase() {
           if (!phraseInput) return;
-
           let clean = (phraseInput.value || "").slice(0, 20);
           phraseInput.value = clean;
-
           phraseCount.textContent = clean.length;
-
           const display = clean.trim() || "yourtext";
-
           document.querySelectorAll(".js-phraseText").forEach((el) => {
             el.textContent = display;
           });
-
           urlBar.textContent = display.toLowerCase() + ".com";
         }
-
       if (phraseInput) {
           phraseInput.addEventListener("input", syncPhrase);
           syncPhrase();
         }
-
       function updateValueLabel(id, suffix = "") {
           const input = document.getElementById(id);
           const label = document.getElementById(`${id}-value`);
-
           if (input && label) {
             label.textContent = `${input.value}${suffix}`;
           }
         }
-
       function applyLightness(value, lightness) {
           return Math.round(Number(value) * (Number(lightness) / 100));
         }
-
       function applyFontLightness(value, lightness) {
           const base = Number(value);
           const amount = Number(lightness) / 100;
-
           return Math.round(base + (255 - base) * amount);
         }
-
       function applyFontColor() {
           const lightness = document.getElementById("font-lightness").value;
           const r = applyFontLightness(document.getElementById("font-rgb-r").value, lightness);
           const g = applyFontLightness(document.getElementById("font-rgb-g").value, lightness);
           const b = applyFontLightness(document.getElementById("font-rgb-b").value, lightness);
-
           getDesignTextItems().forEach((text) => {
             text.style.color = `rgb(${r}, ${g}, ${b})`;
           });
         }
-
       function applyBackgroundColor() {
           const lightness = document.getElementById("bg-lightness").value;
           const r = applyLightness(document.getElementById("rgb-r").value, lightness);
           const g = applyLightness(document.getElementById("rgb-g").value, lightness);
           const b = applyLightness(document.getElementById("rgb-b").value, lightness);
-
           browserPage.style.background = `rgb(${r}, ${g}, ${b})`;
           browserPage.style.setProperty("--launch-after-bg", `rgb(${r}, ${g}, ${b})`);
         }        ["rgb-r", "rgb-g", "rgb-b"].forEach((id) => {
           const input = document.getElementById(id);
           if (!input) return;
-
           input.addEventListener("input", () => {
             updateValueLabel(id);
             applyBackgroundColor();
           });
         });
-
         const bgLightness = document.getElementById("bg-lightness");
         if (bgLightness) {
           bgLightness.addEventListener("input", () => {
@@ -1882,13 +1600,11 @@
         }        ["font-rgb-r", "font-rgb-g", "font-rgb-b"].forEach((id) => {
           const input = document.getElementById(id);
           if (!input) return;
-
           input.addEventListener("input", () => {
             updateValueLabel(id);
             applyFontColor();
           });
         });
-
         const fontLightness = document.getElementById("font-lightness");
         if (fontLightness) {
           fontLightness.addEventListener("input", () => {
@@ -1896,7 +1612,6 @@
             applyFontColor();
           });
         }
-
       const fontOptions = [
           { label: "Roboto", family: '"Roboto", sans-serif', weight: "500" },
           { label: "Montserrat", family: '"Montserrat", sans-serif', weight: "600" },
@@ -1919,7 +1634,6 @@
           { label: "Momo", family: '"Momo Signature", cursive', weight: "400", style: "normal" },
           { label: "Asimovian", family: '"Asimovian", sans-serif', weight: "400", style: "normal" },
         ];
-
         const iconOptions = [
           { label: "House", className: "fa-solid fa-house" },
           { label: "Anchor", className: "fa-solid fa-anchor" },
@@ -1942,7 +1656,6 @@
           { label: "Fire", className: "fa-solid fa-fire" },
           { label: "Fish", className: "fa-solid fa-fish" },
         ];
-
         const defaultFontIndex = 15;
         const defaultIconIndex = 0;
         const fontOptionGrid = document.getElementById("fontOptionGrid");
@@ -1954,94 +1667,73 @@
         const iconResetBtn = document.getElementById("iconReset");
         const previewLine = document.querySelector(".about-browser__previewLine");
         let lastTrailTime = 0;
-
         function setLaunchSplit(value) {
           if (!launchCompare || !launchCompareRange) return;
-
           const split = Math.min(100, Math.max(0, Number(value)));
           launchCompare.style.setProperty("--split", `${split}%`);
           launchCompareRange.value = split;
         }
-
       function setActiveButton(buttons, activeButton) {
           buttons.forEach((btn) => btn.classList.toggle("active", btn === activeButton));
         }
-
       function setActiveTextType(type) {
           textStyleButtons.forEach((btn) => {
             btn.classList.toggle("active", btn.dataset.textType === type);
           });
         }
-
       function applyTextType(type) {
           const current = getCenterText();
           const launchAfterText = getLaunchAfterText();
-
           replaceTextElement(current, type);
           replaceTextElement(launchAfterText, type);
         }
-
       function replaceTextElement(current, type) {
           if (!current || current.tagName.toLowerCase() === type) return;
-
           const next = document.createElement(type);
           next.className = current.className;
           next.textContent = current.textContent;
           next.style.cssText = current.style.cssText;
           current.replaceWith(next);
         }
-
       function applyFontOption(option, activeButton) {
           const centerText = getCenterText();
           if (!centerText) return;
-
           getDesignTextItems().forEach((text) => {
             text.style.fontFamily = option.family;
             text.style.fontWeight = option.weight;
             text.style.fontStyle = option.style || "normal";
           });
-
           if (activeButton) {
             setActiveButton(document.querySelectorAll(".font-option-button"), activeButton);
           }
         }
-
       function applyIconOption(option, activeButton, shouldPersist = false) {
           iconHasBeenChosen = iconHasBeenChosen || shouldPersist;
-
           getPageIcons().forEach((icon) => {
             icon.className = `about-browser__icon ${option.className}`;
           });
-
           if (activeButton) {
             setActiveButton(document.querySelectorAll(".icon-option-button"), activeButton);
           }
-
       updateIconVisibility();
         }
-
       function applyIconSize() {
           if (!iconSize) return;
-
           getPageIcons().forEach((icon) => {
             icon.style.setProperty("--icon-scale", Number(iconSize.value) / 100);
           });
           updateValueLabel("icon-size", "%");
         }
-
       function applyVisualEffect(effect, activeButton) {
           browserPage.classList.remove("effect-zoom", "effect-glitch", "effect-trail");
           browserPage.querySelectorAll(".cursor-trail-dot").forEach((dot) => dot.remove());
-
           if (effect !== "none") {
             browserPage.classList.add(`effect-${effect}`);
           }
-
       if (activeButton) {
             setActiveButton(visualEffectButtons, activeButton);
           }
         }
-
       if (fontOptionGrid) {
           fontOptions.forEach((option, index) => {
             const button = document.createElement("button");
@@ -2056,65 +1748,52 @@
             fontOptionGrid.appendChild(button);
           });
         }
-
       if (iconOptionGrid) {
           iconOptions.forEach((option, index) => {
             const button = document.createElement("button");
             const icon = document.createElement("i");
-
             button.className = "icon-option-button";
             button.type = "button";
             button.setAttribute("aria-label", option.label);
             button.title = option.label;
             button.classList.toggle("active", index === defaultIconIndex);
-
             icon.className = option.className;
             icon.setAttribute("aria-hidden", "true");
             button.appendChild(icon);
-
             button.addEventListener("click", () => applyIconOption(option, button, true));
             iconOptionGrid.appendChild(button);
           });
         }
-
       if (iconSize) {
           iconSize.addEventListener("input", applyIconSize);
         }
-
       if (launchCompareRange && launchCompare) {
           launchCompareRange.addEventListener("input", () => {
             setLaunchSplit(launchCompareRange.value);
           });
-
           launchCompare.addEventListener("pointerdown", (event) => {
             const bounds = launchCompare.getBoundingClientRect();
             setLaunchSplit(((event.clientX - bounds.left) / bounds.width) * 100);
             launchCompare.setPointerCapture(event.pointerId);
           });
-
           launchCompare.addEventListener("pointermove", (event) => {
             if (!launchCompare.hasPointerCapture(event.pointerId)) return;
-
             const bounds = launchCompare.getBoundingClientRect();
             setLaunchSplit(((event.clientX - bounds.left) / bounds.width) * 100);
           });
-
           setLaunchSplit(launchCompareRange.value);
         }
-
       textStyleButtons.forEach((button) => {
           button.addEventListener("click", () => {
             applyTextType(button.dataset.textType);
             setActiveTextType(button.dataset.textType);
           });
         });
-
         visualEffectButtons.forEach((button) => {
           button.addEventListener("click", () => {
             applyVisualEffect(button.dataset.visualEffect, button);
           });
         });
-
         if (previewLine) {
           previewLine.addEventListener("pointerdown", () => {
             if (
@@ -2124,23 +1803,19 @@
               previewLine.classList.add("is-touching");
             }
           });
-
           ["pointerup", "pointercancel", "pointerleave"].forEach((eventName) => {
             previewLine.addEventListener(eventName, () => {
               previewLine.classList.remove("is-touching");
             });
           });
         }
-
       browserPage.addEventListener("pointermove", (event) => {
           if (!browserPage.classList.contains("effect-trail")) return;
           if (browserPage.classList.contains("launch-mode")) return;
           if (event.pointerType === "touch") event.preventDefault();
-
           const now = window.performance.now();
           if (now - lastTrailTime < 35) return;
           lastTrailTime = now;
-
           const bounds = browserPage.getBoundingClientRect();
           const dot = document.createElement("span");
           dot.className = "cursor-trail-dot";
@@ -2149,7 +1824,6 @@
           browserPage.appendChild(dot);
           dot.addEventListener("animationend", () => dot.remove(), { once: true });
         });
-
         if (typeResetBtn) {
           typeResetBtn.addEventListener("click", () => {
             applyTextType("p");
@@ -2160,7 +1834,6 @@
             );
           });
         }
-
       if (iconResetBtn) {
           iconResetBtn.addEventListener("click", () => {
             resetInputs({ "icon-size": 100 });
@@ -2173,65 +1846,52 @@
             applyIconSize();
           });
         }
-
       applyFontOption(fontOptions[defaultFontIndex]);
         applyIconOption(iconOptions[defaultIconIndex]);
         applyIconSize();
       });
-
       const mobileCustomizerTabs = document.querySelectorAll(
         "#assembleCustomizer .mobile-customizer-tab",
       );
       const bgCustomizer = document.getElementById("bg-customizer");
       const fontCustomizer = document.getElementById("font-color-customizer");
-
       mobileCustomizerTabs.forEach((btn) => {
         btn.addEventListener("click", () => {
           const mode = btn.dataset.customizer;
-
           mobileCustomizerTabs.forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
-
           bgCustomizer.classList.toggle("active-mobile", mode === "background");
           fontCustomizer.classList.toggle("active-mobile", mode === "foreground");
         });
       });
-
       const refineCustomizerTabs = document.querySelectorAll(
         "#refineCustomizer .mobile-customizer-tab",
       );
       const refineFontPanel = document.getElementById("refine-font-panel");
       const refineSizePanel = document.getElementById("refine-size-panel");
-
       refineCustomizerTabs.forEach((btn) => {
         btn.addEventListener("click", () => {
           const mode = btn.dataset.refineCustomizer;
-
           refineCustomizerTabs.forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
-
           refineFontPanel.classList.toggle("active-mobile", mode === "font");
           refineSizePanel.classList.toggle("active-mobile", mode === "size");
         });
       });
-
       const backgroundResetBtn = document.getElementById("backgroundReset");
       const fontResetBtn = document.getElementById("fontReset");
-
       function resetInputs(defaults) {
         Object.entries(defaults).forEach(([id, value]) => {
           const input = document.getElementById(id);
           if (input) input.value = value;
         });
       }
-
       function resetLabels(labels) {
         Object.entries(labels).forEach(([id, value]) => {
           const label = document.getElementById(id);
           if (label) label.textContent = value;
         });
       }
-
       if (backgroundResetBtn) {
         backgroundResetBtn.addEventListener("click", () => {
           const browserPage = document.querySelector(".about-browser__page");
@@ -2241,7 +1901,6 @@
             "rgb-b": 255,
             "bg-lightness": 100,
           };
-
           resetInputs(defaults);
           resetLabels({
             "rgb-r-value": "255",
@@ -2249,7 +1908,6 @@
             "rgb-b-value": "255",
             "bg-lightness-value": "100%",
           });
-
           if (browserPage) {
             browserPage.style.background = `rgb(${defaults["rgb-r"]}, ${defaults["rgb-g"]}, ${defaults["rgb-b"]})`;
             browserPage.style.setProperty(
@@ -2259,7 +1917,6 @@
           }
         });
       }
-
       if (fontResetBtn) {
         fontResetBtn.addEventListener("click", () => {
           const defaults = {
@@ -2268,7 +1925,6 @@
             "font-rgb-b": 27,
             "font-lightness": 0,
           };
-
           resetInputs(defaults);
           resetLabels({
             "font-rgb-r-value": "21",
@@ -2276,22 +1932,18 @@
             "font-rgb-b-value": "27",
             "font-lightness-value": "0%",
           });
-
           document.querySelectorAll(".about-browser__centerText").forEach((text) => {
             text.style.color = `rgb(${defaults["font-rgb-r"]}, ${defaults["font-rgb-g"]}, ${defaults["font-rgb-b"]})`;
           });
         });
       }
     </script>
-
     <style>
-      
       .career {
         background: #fff;
         color: #111;
         padding: 108px 8px 24px;
       }
-
       .career__sticky {
         width: min(1180px, 100%);
         margin: 0 auto;
@@ -2300,13 +1952,11 @@
         gap: 56px;
         align-items: start;
       }
-
       .career__left {
         position: sticky;
         top: 26px;
         padding-top: 10px;
       }
-
       .career__big {
         margin: 0 0 14px;
         font-family: "Cormorant Garamond", serif;
@@ -2315,16 +1965,13 @@
         letter-spacing: 0.02em;
         line-height: 0.9;
       }
-
       .career__sub {
         margin: 0 0 22px;
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 16px;
         line-height: 1.75;
         color: rgba(17, 17, 17, 0.75);
         max-width: 44ch;
       }
-
       .career__btn {
         display: inline-flex;
         align-items: center;
@@ -2334,10 +1981,8 @@
         border-radius: 12px;
         text-decoration: none;
         color: #111;
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 14px;
       }
-
       .career__right {
         max-height: calc(100vh - 120px);
         overflow: auto; 
@@ -2346,99 +1991,79 @@
         padding-left: 26px;
         position: relative;
       }
-
       .career__loop {
         display: block;
         will-change: transform;
       }
-
       .career__right:hover .career__loop {
         animation-play-state: paused;
       }
-
       .career__right:focus-within .career__loop {
         animation-play-state: paused;
       }
-
       .role {
         border-top: 1px solid rgba(0, 0, 0, 0.12);
         padding: 26px 0;
         background: #fff;
       }
-
       .role:first-child {
         border-top: 1px solid rgba(0, 0, 0, 0.12);
       }
-
       .role__top {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         gap: 18px;
       }
-
       .role__title {
         margin: 0;
         font-family: "Cormorant Garamond", serif;
         font-size: 32px;
         letter-spacing: 0.02em;
       }
-
       .role__pill {
         white-space: nowrap;
         padding: 8px 14px;
         border-radius: 999px;
         background: rgba(0, 0, 0, 0.08);
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 13px;
         color: rgba(0, 0, 0, 0.75);
       }
-
       .role__meta {
         margin-top: 8px;
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 14px;
         color: rgba(0, 0, 0, 0.65);
       }
-
       .role__desc {
         margin: 14px 0 0;
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 15px;
         line-height: 1.8;
         color: rgba(0, 0, 0, 0.78);
       }
-
-      
       @media (max-width: 900px) {
         .career__sticky {
           grid-template-columns: 1fr;
           gap: 24px;
         }
-
       .career__left {
           position: relative;
           top: auto;
         }
-
       .career__right {
           max-height: none;
           overflow: visible;
           border-left: none;
           padding-left: 0;
         }
-
       .career__loop {
           animation: none !important;
           transform: none !important;
         }
-
       .role__top {
           cursor: pointer;
           padding-right: 26px;
           position: relative;
         }
-
       .role__top::after {
           content: "+";
           position: absolute;
@@ -2449,30 +2074,23 @@
           line-height: 1;
           color: rgba(0, 0, 0, 0.65);
         }
-
       .role.is-open .role__top::after {
           content: "–";
         }
-
       .role__desc {
           display: none;
         }
-
       .role.is-open .role__desc {
           display: block;
         }
       }
     </style>
-
     <section class="career" id="career" aria-label="Career timeline">
       <div class="career__sticky">
         <div class="career__left">
           <h2 class="career__big">Career</h2>
           <p class="career__sub">
-            Driven and multifaceted student with a passion for creative
-            technology, entrepreneurship, and community service. Experienced in
-            app design, web development, and coding. Strong creative skills.
-            Team player with an eye for detail.
+            Somewhere between web design, development, UX, and creative strategy, with a soft spot for making complicated things feel simple.
           </p>
           <a
             class="career__btn"
@@ -2481,16 +2099,36 @@
             >View Linkedin ↗</a
           >
         </div>
-
-        
         <div
           class="career__right"
           id="careerViewport"
           aria-label="Career entries"
         >
-          
           <div class="career__loop" id="careerLoop">
-            
+            <article class="role">
+              <div class="role__top">
+                <h3 class="role__title">Mariel Whitney Design</h3>
+                <span class="role__pill">2026 – Present</span>
+              </div>
+              <div class="role__meta">
+                Freelance
+              </div>
+              <p class="role__desc">
+                Design and develop responsive, editorial-style websites for small businesses, creative brands, and community-focused organizations.
+              </p>
+            </article>
+            <article class="role">
+              <div class="role__top">
+                <h3 class="role__title">Wedding Coordinator</h3>
+                <span class="role__pill">2026 – Present</span>
+              </div>
+              <div class="role__meta">
+                Glass House Creative Community
+              </div>
+              <p class="role__desc">
+                I know, unexpected, right? I help couples plan and coordinate their weddings, ensuring that every detail is executed flawlessly. From managing timelines and vendors to providing on-the-day support, I strive to create a stress-free and memorable experience for the couple and their guests.
+              </p>
+            </article>
             <article class="role">
               <div class="role__top">
                 <h3 class="role__title">Web Assistant</h3>
@@ -2507,7 +2145,6 @@
                 remain accurate, accessible, and user-friendly.
               </p>
             </article>
-
             <article class="role">
               <div class="role__top">
                 <h3 class="role__title">Hiver</h3>
@@ -2526,7 +2163,6 @@
                 intentional and impactful platform.
               </p>
             </article>
-
             <article class="role">
               <div class="role__top">
                 <h3 class="role__title">Academic Success Center Intern</h3>
@@ -2542,7 +2178,6 @@
                 frequent collaboration with students and staff.
               </p>
             </article>
-
             <article class="role">
               <div class="role__top">
                 <h3 class="role__title">Peer Advisor</h3>
@@ -2559,7 +2194,6 @@
                 thrive and feel confident in their college journey.
               </p>
             </article>
-
             <article class="role">
               <div class="role__top">
                 <h3 class="role__title">Girls Who Code</h3>
@@ -2571,7 +2205,6 @@
                 coding projects.
               </p>
             </article>
-
             <article class="role">
               <div class="role__top">
                 <h3 class="role__title">App Development</h3>
@@ -2593,36 +2226,29 @@
         </div>
       </div>
     </section>
-
     <script>
       (function () {
         const viewport = document.getElementById("careerViewport");
         const loop = document.getElementById("careerLoop");
         if (!viewport || !loop) return;
-
         const desktop = window.matchMedia(
           "(min-width: 901px) and (pointer: fine)"
         );
-        
-
         let rafId = null;
         let lastTs = 0;
         let paused = false;
         let pauseTimer = null;
         let singleHeight = 0;
-
         function stopAuto() {
           if (rafId) cancelAnimationFrame(rafId);
           rafId = null;
           lastTs = 0;
         }
-
       function startAuto() {
           stopAuto();
           if (paused) return;
           rafId = requestAnimationFrame(step);
         }
-
       function pauseAuto(ms = 1200) {
           paused = true;
           stopAuto();
@@ -2632,7 +2258,6 @@
             startAuto();
           }, ms);
         }
-
       function ensureDuplicate() {
           const existingDup = loop.querySelector('[data-dup="true"]');
           if (existingDup) existingDup.remove();
@@ -2642,23 +2267,18 @@
           dupWrap.innerHTML = loop.innerHTML;
           loop.appendChild(dupWrap);
         }
-
       function step(ts) {
           if (paused) return;
           if (!lastTs) lastTs = ts;
           const delta = ts - lastTs;
           lastTs = ts;
-
           const speed = 15; 
           viewport.scrollTop += (delta / 1000) * speed;
-
           if (singleHeight && viewport.scrollTop >= singleHeight) {
             viewport.scrollTop = 0;
           }
-
       rafId = requestAnimationFrame(step);
         }
-
       function setup() {
           if (!desktop.matches || reduce.matches) {
             stopAuto();
@@ -2667,12 +2287,10 @@
             initMobileDropdowns(true);
             return;
           }
-
       ensureDuplicate();
           startAuto();
           initMobileDropdowns(false);
         }
-
       viewport.addEventListener("wheel", () => {
           if (!desktop.matches) return;
           pauseAuto(1400);
@@ -2684,10 +2302,8 @@
           passive: true,
         });
         viewport.addEventListener("focusin", () => pauseAuto(1600));
-
         window.addEventListener("resize", setup);
         setup();
-
         function initMobileDropdowns(isMobile) {
           const tops = loop.querySelectorAll(".role__top");
           tops.forEach((top) => {
@@ -2720,122 +2336,37 @@
         }
       })();
     </script>
-
     <style>
-      .project-carousel {
-        padding: 48px 0;
-        overflow: hidden;
-        background-color: var(--fg);
-      }
-
-      .carousel-track {
-        display: flex;
-        gap: 32px;
-        width: max-content;
-        animation: scrollProjects 60s linear infinite;
-      }
-
-      .project-carousel .project {
-        position: relative;
-        display: block;
-
-        width: 320px;
-        height: 200px;
-        overflow: hidden;
-
-        text-decoration: none;
-        color: #fff;
-
-        background-size: cover;
-        background-position: center;
-        filter: grayscale(1) contrast(1.05);
-        transition: filter 300ms ease, transform 300ms ease;
-      }
-
-      .project-carousel .project:hover {
-        filter: grayscale(0);
-        transform: translateY(-4px);
-      }
-
-      .project-carousel .project::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.65),
-          rgba(0, 0, 0, 0.15)
-        );
-      }
-
-      .project-carousel .project-title {
-        position: absolute;
-        bottom: 18px;
-        left: 18px;
-        z-index: 2;
-
-        margin: 0;
-        font-size: 14px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: #fff;
-      }
-
-      .project-carousel .project-meta {
-        display: none;
-      }
-
-      @keyframes scrollProjects {
-        from {
-          transform: translateX(0);
-        }
-
-      to {
-          transform: translateX(-50%);
-        }
-      }
-
-       
-      
     </style>
     <section class="project-carousel">
         <div class="carousel-track project-list">
           <a class="project" href="magazine.html" data-bg="magazine.png">
             <p class="project-title">Magazine</p>
           </a>
-
           <a class="project" href="object.html" data-bg="boatproject.png">
             <p class="project-title">Object Customizer</p>
           </a>
-
           <a class="project" href="paint.html" data-bg="splat.png">
             <p class="project-title">Paint Splat</p>
           </a>
-
           <a class="project" href="hope.html" data-bg="hope.jpg">
             <p class="project-title">Hope.edu</p>
           </a>
-
           <a class="project" href="ticket.html" data-bg="ticket.jpg">
             <p class="project-title">Tickets</p>
           </a>
-
           <a class="project" href="sr.html" data-bg="sr.png">
             <p class="project-title">Study Room</p>
           </a>
-
           <a class="project" href="fp.html" data-bg="fp-ss.png">
             <p class="project-title">Font Playground</p>
           </a>
-
           <a class="project" href="haworth.html" data-bg="haworth-hotel.png">
             <p class="project-title">Haworth Hotel</p>
           </a>
-
           <a class="project" href="anchor.html" data-bg="anchor-hp.png">
             <p class="project-title">The Anchor</p>
           </a>
-
           <a
             class="project"
             href="stats.html"
@@ -2843,58 +2374,17 @@
           >
             <p class="project-title">Statistics</p>
           </a>
-
-          
           <a class="project" href="magazine.html" data-bg="magazine.png">
             <p class="project-title">Magazine</p>
           </a>
-
           <a class="project" href="object.html" data-bg="boatproject.png">
             <p class="project-title">Object Customizer</p>
           </a>
+          <a class="project" href="dare-to-hope.html" data-bg="beach-group-run.jpg">
+            <p class="project-title">Dare to Hope</p>
+          </a>
         </div>
       </section>
-    <script>
-      document
-        .querySelectorAll(".project-carousel .project")
-        .forEach((project) => {
-          const bg = project.dataset.bg;
-          if (bg) {
-            project.style.backgroundImage = `url(${bg})`;
-          }
-        });
-      function isVideoUrl(url) {
-        return typeof url === "string" && url.toLowerCase().endsWith(".mp4");
-      }
-
-      function setBackground(url) {
-        if (!url) return;
-        if (isVideoUrl(url) && bgVideo) {
-          bgVideo.src = url;
-          bgVideo.classList.add("is-visible");
-          bgA.classList.remove("is-visible");
-          bgB.classList.remove("is-visible");
-          bgVideo.play().catch(() => {});
-          return;
-        }
-
-      if (bgVideo) {
-          bgVideo.pause();
-          bgVideo.removeAttribute("src");
-          bgVideo.load();
-          bgVideo.classList.remove("is-visible");
-        }
-
-      const next = showingA ? bgB : bgA;
-        const current = showingA ? bgA : bgB;
-
-        next.style.backgroundImage = `url("${url}")`;
-        next.classList.add("is-visible");
-        current.classList.remove("is-visible");
-
-        showingA = !showingA;
-      }
-    </script>
-
+    <script src="script.js"></script>
   </body>
 </html>
