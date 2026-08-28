@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Dare to Hope — Portfolio</title>
+    <style>
+      :root {
+        --bg: #fff;
+        --fg: #111111;
+        --muted: rgba(17, 17, 17, 0.6);
+        --line: rgba(17, 17, 17, 0.2);
+        --accent: #dfdfdf;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .bg-layer {
+        position: absolute;
+        inset: 0;
+        background: var(--bg);
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 300ms ease;
+        will-change: opacity, transform;
+        transform: scale(1.06);
+        filter: grayscale(1) contrast(0.95) brightness(0.95);
+      }
+      .bg-layer.is-visible {
+        opacity: 1;
+      }
+      .bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          70% 70% at 50% 45%,
+          rgba(255, 255, 255, 0.78),
+          rgba(255, 255, 255, 0.92)
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+      .noise {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        opacity: 0.06;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      }
+      .border-frame {
+        pointer-events: none;
+        position: fixed;
+        inset: 18px;
+        z-index: 5;
+      }
+      .wrap {
+        position: relative;
+        z-index: 6;
+        min-height: 100%;
+      }
+      .scene {
+        height: 220vh;
+        display: block;
+      }
+      .scene__sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 120px 24px 120px; 
+      }
+      .scene__content {
+        text-align: center;
+        transform: scale(var(--scale, 1));
+        opacity: var(--alpha, 1);
+        will-change: transform, opacity;
+      }
+      .scene__title {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        line-height: 0.95;
+        font-size: clamp(56px, 9vw, 140px); 
+      }
+      .scene__subtitle {
+        margin: 14px 0 0;
+        color: rgba(17, 17, 17, 0.62);
+        font-size: 14px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .zoom-bg {
+        background: url("beach-group-run.jpg") center/cover no-repeat;
+      }
+      .zoom-word {
+        background-image: url("beach-group-run.jpg");
+      }
+      .info-section {
+        min-height: auto;
+        padding: 120px 28px 60px;
+      }
+      .info-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        align-items: start;
+      }
+      .info-heading {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(36px, 5vw, 56px);
+        font-weight: 600;
+        text-align: left;
+        grid-column: 2;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+      a:hover {
+        color: var(--accent);
+      }
+      .info-rule {
+        margin: 24px 0 32px;
+        border: 0;
+        border-top: 1px solid rgba(17, 17, 17, 0.2);
+        grid-column: 2;
+      }
+      .info-grid {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(200px, 260px) 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      .info-lede {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(17, 17, 17, 0.7);
+      }
+      .info-copy {
+        display: grid;
+        gap: 18px;
+      }
+      .info-copy p {
+        margin: 0;
+        color: rgba(17, 17, 17, 0.8);
+        line-height: 1.8;
+      }
+      .info-copy a {
+        text-decoration: underline;
+      }
+      .admissions-compare-section {
+        padding: 0 28px 72px;
+      }
+      .admissions-compare-inner {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .admissions-compare-labels {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 14px;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(17, 17, 17, 0.62);
+      }
+      .admissions-compare-group + .admissions-compare-group {
+        margin-top: 42px;
+      }
+      .admissions-page-link {
+        display: flex;
+        justify-content: center;
+        margin-top: 28px;
+      }
+      .admissions-page-link a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 24px;
+        border: 1px solid #111;
+        background: #111;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          background 180ms ease,
+          color 180ms ease,
+          transform 180ms ease;
+      }
+      .admissions-page-link a:hover {
+        background: #fff;
+        color: #111;
+        transform: translateY(-2px);
+      }
+      .launch-compare {
+        --compare-pos: 50%;
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        max-height:880px;
+        overflow: hidden;
+        border: 1px solid rgba(17, 17, 17, 0.16);
+        background: #fff;
+      }
+      .launch-compare__pane {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .launch-compare__pane img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        filter: contrast(0.9);
+        user-select: none;
+        pointer-events: none;
+      }
+      .launch-compare--facts {
+        aspect-ratio: 4 / 5.4;
+      }
+      .launch-compare--facts .launch-compare__before img {
+        object-position: center 90%;
+      }
+      .launch-compare--facts .launch-compare__after img {
+        object-position: center 80%;
+      }
+      .launch-compare__after {
+        clip-path: inset(0 0 0 var(--compare-pos));
+      }
+      .launch-compare__after img {
+        filter: none;
+      }
+      .launch-compare__handle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: var(--compare-pos);
+        width: 1px;
+        background: #111;
+        transform: translateX(-0.5px);
+        pointer-events: none;
+      }
+      .launch-compare__handle::after {
+        content: "<\A>";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #111;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 0.9;
+        white-space: pre;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+        transform: translate(-50%, -50%);
+      }
+      .launch-compare__range {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        cursor: ew-resize;
+      }
+      .bg-wash-off .bg::after {
+        background: transparent;
+      }
+      .ticker {
+        position: relative;
+        height: 92px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+      .ticker::before,
+      .ticker::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 90px;
+        pointer-events: none;
+        z-index: 2;
+      }
+      .ticker::before {
+        left: 0;
+        background: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+      }
+      .ticker::after {
+        right: 0;
+        background: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+      }
+      .ticker__track {
+        display: flex;
+        gap: 18px;
+        width: max-content;
+        padding: 0 18px;
+        animation: tickerMove 26s linear infinite; 
+        will-change: transform;
+      }
+      .ticker__item {
+        display: grid;
+        place-items: center;
+        min-width: 220px;
+        height: 64px;
+        padding: 0 22px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition:
+          transform 160ms ease,
+          background 160ms ease;
+      }
+      .ticker__item:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.12);
+      }
+      @keyframes tickerMove {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ticker__track {
+          animation: none;
+        }
+      }
+      @media (max-width: 640px) {
+        .scene {
+          height: 200vh;
+        }
+        .scene__sticky {
+          padding: 92px 18px 92px;
+        }
+        .scene__subtitle {
+          font-size: 12px;
+        }
+        .border-frame {
+          inset: 14px;
+          border-radius: 18px;
+        }
+        .info-grid {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        .info-inner {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        .info-heading,
+        .info-rule {
+          grid-column: 1;
+        }
+        .admissions-compare-section {
+          padding: 30px 18px 52px;
+        }
+        .launch-compare {
+          aspect-ratio: 3 / 4.5;
+        }
+        .launch-compare--facts {
+          aspect-ratio: 3 / 4.6;
+        }
+      .zoom-bg {
+        background: url("beach-group-run.jpg") center/cover no-repeat;
+      }
+        .zoom-word {
+          background-image: url("beach-group-run.jpg");
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true">
+      <div class="bg-layer is-visible" id="bgA"></div>
+      <div class="bg-layer" id="bgB"></div>
+    </div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="border-frame" aria-hidden="true"></div>
+    <div class="wrap">
+      <header>
+        <a href="index.html">Mariel Whitney Portfolio</a>
+        <a href="about.html">About</a>
+      </header>
+      <section class="zoom-section" id="zoom">
+        <div class="zoom-sticky">
+          <div class="zoom-bg" aria-hidden="true"></div>
+          <h2 class="zoom-title zoom-word" id="zoomWord">Dare to Hope</h2>
+        </div>
+      </section>
+      <section class="info-section" id="information">
+  <div class="info-inner">
+<a href="https://hope.edu/admissions/landing/">
+  <h3 class="info-heading">Dare to Hope</h3>
+</a>
+<hr class="info-rule" />
+<div class="info-grid">
+  <p class="info-lede">Web Assistant</p>
+  <div class="info-copy">
+    <p>
+      I had the opportunity to help redesign and update
+      <a href="https://hope.edu/admissions/landing/">Hope College’s admissions landing page</a>
+      as part of the new <a href="https://hope.edu/admissions/landing/"><strong>Dare to Hope</strong></a> campaign.
+    </p>
+    <p>
+      The page serves as a primary destination for Hope’s digital advertising,
+      introducing prospective students and families to the college after they
+      engage with an ad. Because many visitors may know very little about Hope,
+      the goal was to create a concise and engaging first impression that
+      encourages them to take the next step by submitting an inquiry form or
+      registering for a campus visit.
+    </p>
+    <p>
+      I approached the redesign with a “less is more” strategy, prioritizing
+      clear visual hierarchy, strong calls to action, and content that could be
+      understood quickly by visitors arriving from social media and other
+      digital campaigns. The updated experience incorporates the
+      <a href="https://hope.edu/admissions/landing/"><strong>Dare to Hope</strong></a> campaign identity while keeping the most
+      important information and conversion opportunities easy to find.
+    </p>
+    <p>
+      The project also involved reorganizing supporting admissions content,
+      incorporating expandable “At a Glance” and “Fast Facts” information,
+      and creating clearer pathways to inquire, visit, and apply. These
+      elements allow prospective students to learn more without overwhelming
+      the initial landing-page experience.
+    </p>
+    <p>
+      This project gave me the opportunity to think beyond visual design and
+      consider the full user journey, from a prospective student seeing a
+      digital advertisement to arriving on the website and deciding whether
+      to engage further with Hope College.
+    </p>
+  </div>
+</div>
+  </div>
+</section>
+      <section class="admissions-compare-section" aria-label="Dare to Hope admissions page before and after">
+        <div class="admissions-compare-inner">
+          <div class="admissions-compare-group">
+            <div class="admissions-compare-labels" aria-hidden="true">
+              <span>Before</span>
+              <span>After</span>
+            </div>
+            <div class="launch-compare" id="launchCompare">
+              <div class="launch-compare__pane launch-compare__before">
+                <img
+                  src="dare-to-hope-admissions-before.png"
+                  alt="Previous Hope College admissions landing page design"
+                  draggable="false"
+                />
+              </div>
+              <div class="launch-compare__pane launch-compare__after">
+                <img
+                  src="dare-to-hope-admissions-after.png"
+                  alt="Redesigned Dare to Hope admissions landing page"
+                  draggable="false"
+                />
+              </div>
+              <div class="launch-compare__handle" aria-hidden="true"></div>
+              <input
+                class="launch-compare__range"
+                id="launchCompareRange"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                aria-label="Compare admissions page before and after"
+              />
+            </div>
+          </div>
+          <div class="admissions-page-link">
+            <a href="https://hope.edu/admissions/landing/" target="_blank" rel="noreferrer">
+              Check Out the Full Page
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="project-carousel">
+        <div class="carousel-track project-list">
+          <a class="project" href="magazine.html" data-bg="magazine.png">
+            <p class="project-title">Magazine</p>
+          </a>
+          <a class="project" href="object.html" data-bg="boatproject.png">
+            <p class="project-title">Object Customizer</p>
+          </a>
+          <a class="project" href="paint.html" data-bg="splat.png">
+            <p class="project-title">Paint Splat</p>
+          </a>
+          <a class="project" href="hope.html" data-bg="hope.jpg">
+            <p class="project-title">Hope.edu</p>
+          </a>
+          <a class="project" href="ticket.html" data-bg="ticket.jpg">
+            <p class="project-title">Tickets</p>
+          </a>
+          <a class="project" href="sr.html" data-bg="sr.png">
+            <p class="project-title">Study Room</p>
+          </a>
+          <a class="project" href="fp.html" data-bg="fp-ss.png">
+            <p class="project-title">Font Playground</p>
+          </a>
+          <a class="project" href="haworth.html" data-bg="haworth-hotel.png">
+            <p class="project-title">Haworth Hotel</p>
+          </a>
+           <a class="project" href="anchor.html" data-bg="beach-group-run.jpg">
+            <p class="project-title">The Anchor</p>
+          </a>
+          <a
+            class="project"
+            href="stats.html"
+            data-bg="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=2532&auto=format&fit=crop"
+          >
+            <p class="project-title">Statistics</p>
+          </a>
+          <a class="project" href="magazine.html" data-bg="magazine.png">
+            <p class="project-title">Magazine</p>
+          </a>
+           <a class="project" href="dare-to-hope.html" data-bg="beach-group-run.jpg">
+            <p class="project-title">Dare to Hope</p>
+          </a>
+          <a class="project" href="object.html" data-bg="boatproject.png">
+            <p class="project-title">Object Customizer</p>
+          </a>
+        </div>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
